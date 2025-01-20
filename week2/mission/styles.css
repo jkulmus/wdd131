@@ -2,11 +2,53 @@ body {
     font-family: "Time New Roman", serif;
     font-size: 20px;
     line-height: 1.5;
-    margin: 0;
-    padding: 0;
     text-align: center;
-    background-color: white;
-    color: black;
+    margin: 0;
+    padding: 20px;
+}
+
+.content {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.title h1 {
+    font-size: 2em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.title h2 {
+    font-size: 1em;
+    text-transform: uppercase;
+    color: #006EB6;
+    letter-spacing: 1.5px;
+}
+
+main p {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+main em {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.does-list {
+    list-style-type: decimal;
+    padding-left: 20px;
+    text-align: left;
+}
+
+.does-list li {
+    margin-bottom: 10px;
+}
+
+footer .logo {
+    width: 150px;
+    margin-top: 20px;
 }
 
 body.dark {
@@ -14,45 +56,10 @@ body.dark {
     color: white;
 }
 
-header {
-    margin: 20px 0;
-}
-
-h1 {
-    font-size: 24px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-
-h2 {
-    font-size: 24px;
-    color: #006EB6;
-}
-
 body.dark h2 {
-    color: #76BFFF;
+    color: #1a73e8;
 }
 
-main {
-    max-width: 600px;
-    margin: 0 auto;
-    text-align: left;
-}
-
-main p {
-    margin: 20px 0;
-}
-
-main ul {
-    list-style-type: disc;
-    padding-left: 20px;
-}
-
-footer {
-    margin-top: 30px;
-}
-
-footer img {
-    width: 150px;
-    height: auto;
+body.dark .logo {
+    content: url('byui-logo_white.png')
 }
