@@ -6,13 +6,14 @@ body {
     margin: 0;
     padding: 20px;
 }
-
+/* Container */
 .content {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
 }
 
+/* Header */
 .title h1 {
     font-size: 2em;
     text-transform: uppercase;
@@ -26,6 +27,7 @@ body {
     letter-spacing: 1.5px;
 }
 
+/* Main */
 main p {
     text-align: left;
     margin-bottom: 20px;
@@ -36,6 +38,7 @@ main em {
     margin-bottom: 10px;
 }
 
+/* List */
 .does-list {
     list-style-type: decimal;
     padding-left: 20px;
@@ -46,16 +49,18 @@ main em {
     margin-bottom: 10px;
 }
 
+/* Footer */
 footer .logo {
     width: 150px;
     margin-top: 20px;
 }
 
-body.dark {
+/* Dark */
+.dark {
     background-color: #333;
     color: white;
 }
 
-body.dark h2 {
-    color: #1a73e8;
+.dark h2 {
+    color: #0095EA;
 }
