@@ -59,7 +59,3 @@ body.dark {
 body.dark h2 {
     color: #1a73e8;
 }
-
-body.dark .logo {
-    content: url('byui-logo_white.png')
-}

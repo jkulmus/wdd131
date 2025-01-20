@@ -1,14 +1,13 @@
-document.addEventListener('DOMContentLoaded', function() { 
-    const themeSelector = document.querySelector('#themeSelector');
+const themeSelector = document.getElementById('theme-selector');
 
-    function changeTheme() {
-        if (themeSelector.value === 'dark') {
-            document.body.classList.add('dark');
-            document.querySelector('.logo').src = 'logo-white.webp'; 
-        } else { document.body.classList.remove('dark');
-            document.querySelector('.logo').src = 'logo.webp';
-        } 
+function changeTheme() {
+    if (themeSelector.value === 'dark') {
+        document.body.classList.add('dark')
+            document.getElementById('logo').src = 'byui-logo_white.png';
+    } else {
+        document.body.classList.remove('dark');
+        document.getElementById('logo').src = 'byui-logo.webp'
     }
-    
-    themeSelector.addEventListener('change', changeTheme);
-});
+}
+
+themeSelector.addEventListener('change', changeTheme);
