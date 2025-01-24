@@ -24,10 +24,10 @@ section {
 /* Media Query */
 @media  screen and (min-width: 500px) {
     header {
-        background-color: #e6f2ff;
-        color: #000;
+        background-color: #000;
+        color: #fff;
     }
     main {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
     }
 }
