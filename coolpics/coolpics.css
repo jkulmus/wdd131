@@ -50,6 +50,25 @@ img {
     object-fit: cover;
 }
 
+nav ul {
+    display: none;
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul.visible {
+    display: block;
+}
+
+nav ul li {
+    margin: 0.5rem 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-light);
+}
+
 /* query for medium screens */
 @media screen and (min-width: 700px) {
     .gallery {
@@ -59,9 +78,13 @@ img {
 
 /* query for large screens */
 @media screen and (min-width: 1000px) {
-    header nav {
+    nav ul {
         display: flex;
         justify-content: center;
+    }
+
+    nav ul li {
+        margin: 0 1rem;
     }
     
     #menu-button {
