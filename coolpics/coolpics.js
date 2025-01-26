@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded' () => {
+document.addEventListener('DOMContentLoaded', () => {
     const menuButton = document.getElementById('menu-button');
     const navLinks = document.querySelector('nav ul');
 
