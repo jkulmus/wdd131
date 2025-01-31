@@ -22,10 +22,13 @@ function renderTasks(tasks) {
 }
 
 function newTask() {
-    const task = document.querySelector("#todo").value;
-    tasks.push({detail: task, completed: false });
-    // Render updated list
-    renderTasks(tasks);
+    const taskInput = document.querySelector("#todo");
+    const task = taskInput.value;
+    if (task.trim() !== "") {
+        tasks.push({ detail: task, completed: false });
+        renderTasks(tasks);
+        taskInput.value = ""; // clear field
+    }
 }
 
 function removeTask(taskElement) {
