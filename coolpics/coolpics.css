@@ -61,18 +61,28 @@ h2 {
 nav ul {
     list-style-type: none;
     padding: 0;
+    display: flex;
+    justify-content: center;
 }
 
 nav ul.hide {
     display: none;
-}
-
-nav ul.visible {
-    display: block;
+    flex-direction: column; /* vertical on smaller screens */
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: var(--primary-color);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 nav ul li {
-    margin: 0.5rem 0;
+    margin: 0 1rem; /* adjust for larger screen */
+}
+
+nav ul.hide li {
+    margin: 0.5rem 0; /* adjust for smaller screen */
+    text-align: center;
 }
 
 nav ul li a {
@@ -85,6 +95,7 @@ nav ul li a {
     border: none;
     color: var(--text-light);
     cursor: pointer;
+    display: none; /* initially hidden */
 }
 
 .viewer {
@@ -103,6 +114,23 @@ nav ul li a {
 
 .viewer.hide {
     display: none;
+}
+
+.close-viewer {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.viewer img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
 }
 
 /* query for medium screens */

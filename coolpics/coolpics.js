@@ -9,8 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleResize() {
         if (window.innerWidth > 1000) {
             navLinks.classList.remove('hide');
+            menuButton.style.display = 'none'; // hide button
         } else {
             navLinks.classList.add('hide');
+            menuButton.style.display = 'block'; // Show button
         }
     }
 
@@ -35,7 +37,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const viewerHTML = viewerTemplate(imgSrc, imgAlt);
         document.body.insertAdjacentHTML("afterbegin", viewerHTML);
 
-        document.querySelector('.close-viewer').addEventListener('click', closeViewer);
+        const closeButton = document.querySelector('.close-viewer');
+        closeButton.addEventListener('click', closeViewer);
+
+        // prevent scrolling on main page when viewer open
+        document.body.style.overflow = 'hidden';
     }
 
     function closeViewer() {
@@ -43,6 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (viewer) {
             viewer.remove();
         }
+
+        // Re-enable scroling on main page when viewer closed
+        document.body.style.overflow = 'auto';
     }
 
     document.querySelector(".gallery").addEventListener("click", viewHandler);
