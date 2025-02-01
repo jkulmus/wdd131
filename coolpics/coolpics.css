@@ -59,9 +59,12 @@ h2 {
 }
 
 nav ul {
-    display: none;
     list-style-type: none;
     padding: 0;
+}
+
+nav ul.hide {
+    display: none;
 }
 
 nav ul.visible {
@@ -82,6 +85,24 @@ nav ul li a {
     border: none;
     color: var(--text-light);
     cursor: pointer;
+}
+
+.viewer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.75);
+    display: grid;
+    grid-template-rows: auto 1fr;
+    justify-items: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.viewer.hide {
+    display: none;
 }
 
 /* query for medium screens */
