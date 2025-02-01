@@ -1,60 +1,43 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const menuButton = document.getElementById('menu-button');
-    const navLinks = document.querySelector('.nav-links');
+document.addEventListener("DOMContentLoaded", function() {
+    const menuButton = document.querySelector('.menu-button');
+    const navMenu = document.querySelector('nav');
 
-    menuButton.addEventListener('click', () => {
-        console.log('Menu button clicked');
-        navLinks.classList.toggle('visible');
-        console.log('Menu state:', navLinks.classList.contains('visible'));
+    menuButton.addEventListener('click', function() {
+        navMenu.classList.toggle('hide');
     });
 
     function handleResize() {
         if (window.innerWidth > 1000) {
-            navLinks.classList.remove('hide');
-            menuButton.style.display = 'none'; // hide button
+            navMenu.classList.remove('hide');
         } else {
-            navLinks.classList.add('hide');
-            menuButton.style.display = 'block'; // Show button
+            navMenu.classList.add('hide');
         }
     }
 
-    handleResize();
     window.addEventListener('resize', handleResize);
+    handleResize(); // imddediatly when page loads
 
-    function viewerTemplate(pic, alt) {
+    function viewerTemplate(src, alt) {
         return `
-            <div class="viewer">
-                <button class="close-viewer">X</button>
-                <img src="${pic}" alt="${alt}">
-            </div>`;
+        <div class="viewer">
+            <button class="close-viewer">X</button>
+            <img src="${src}" alt="${alt}">
+        </div>`;
     }
 
     function viewHandler(event) {
-        const element = event.target;
-        if (!element.classList.contains('gallery-img')) return;
+        if (event.target.tagName === 'IMG') {
+            const imgSrc = event.target.src.split('-')[0] + '-full.jpeg';
+            const imgAlt = event.target.alt;
+            document.body.insertAdjacentHTML("afterbegin", viewerTemplate(imgSrc, imgAlt));
 
-        const imgSrc = element.src.replace('-sm', '-lg'); // Adjust based on your naming convention
-        const imgAlt = element.alt;
-
-        const viewerHTML = viewerTemplate(imgSrc, imgAlt);
-        document.body.insertAdjacentHTML("afterbegin", viewerHTML);
-
-        const closeButton = document.querySelector('.close-viewer');
-        closeButton.addEventListener('click', closeViewer);
-
-        // prevent scrolling on main page when viewer open
-        document.body.style.overflow = 'hidden';
+            document.querySelector('.close-viewer').addEventListener('click', closeViewer);
+        }
     }
 
     function closeViewer() {
-        const viewer = document.querySelector('.viewer');
-        if (viewer) {
-            viewer.remove();
-        }
-
-        // Re-enable scroling on main page when viewer closed
-        document.body.style.overflow = 'auto';
+        document.querySelector('.viewer').remove();
     }
 
-    document.querySelector(".gallery").addEventListener("click", viewHandler);
-});
+    document.querySelector('.gallery').addEventListener('click', viewHandler);
+})
