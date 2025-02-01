@@ -65,7 +65,7 @@ nav ul {
     justify-content: center;
 }
 
-nav ul.hide {
+.hide {
     display: none;
     flex-direction: column; /* vertical on smaller screens */
     position: absolute;

@@ -1,9 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     const menuButton = document.getElementById('menu-button');
-    const navLinks = document.querySelector('nav ul');
+    const navLinks = document.querySelector('.nav-links');
 
     menuButton.addEventListener('click', () => {
+        console.log('Menu button clicked');
         navLinks.classList.toggle('visible');
+        console.log('Menu state:', navLinks.classList.contains('visible'));
     });
 
     function handleResize() {
