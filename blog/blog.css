@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Slab:wght@100..900&family=Shadows+Into+Light&display=swap');
+
+body {
+    font-family: 'Prompt', serif;
+    color: #5E6472; /* dark gray */
+    background-color: #FAF3DD; /* light yellow */
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: #FFA69E; /* light pink */
+    font-family: 'Shadows Into Light', serif;
+}
+
+.main-nav {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: end;
+    list-style: none;
+    padding: 0;
+}
+
+.main-nav li {
+    margin: 0 10px;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: #5E6472; /* dark gray */
+    font-size: 1.2em;
+    font-family: 'Roboto Slab', serif;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 20px;
+    padding: 20px;
+}
+
+.articles {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+article {
+    border: 1px solid #5E6472; /* dark gray */
+    padding: 20px;
+    background-color: #B8F2E6; /* light blue */
+    font-family: 'Roboto Slab', serif;
+}
+
+article h2 {
+    font-family: 'Prompt', serif;
+    color: #AED9E0; /* medium blue */
+}
+
+article img {
+    max-width: 100%;
+    height: auto;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #FFA69E; /* light pink */
+    font-family: 'Shadows Into Light', serif;
+}
+
+.skiptocontent a {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background-color: #AF1B3F;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.skiptocontent a:focus {
+    top: 0;
+}
