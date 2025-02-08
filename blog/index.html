@@ -28,23 +28,7 @@
     </header>
     <main id="maincontent">
         <section class="articles">
-            <script>
-                articles.forEach(article => {
-                    const articleHTML = `
-                        <article>
-                            <div class="article-details">
-                                <p class="article-date">${article.date}</p>
-                            </div>
-                            <div class="article-content">
-                                <h2>${article.title}</h2>
-                                <img src="${article.imgSrc}" alt="${article.imgAlt}">
-                                <p>${article.description}</p>
-                            </div>
-                        </article>
-                    `;
-                    document.write(articleHTML);
-                });
-            </script>
+            <!-- Articles will be inserted here -->
         </section>
         <aside class="filters">
             <p>Filter form here</p>

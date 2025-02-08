@@ -17,16 +17,16 @@ body {
 
 h1, h2, h3 {
     font-family: 'Prompt', sans-serif;
-    color: var(--dark-color);
+    color: var(--primary-color);
 }
 
 a {
-    color: var(--accent-color-1);
+    color: var(--primary-color);
     text-decoration: none;
 }
 
 header {
-    background-color: var(--accent-color-2);
+    background-color: var(--accent-color-1);
     padding: 20px;
 }
 
@@ -79,15 +79,7 @@ article {
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 20px;
-    background-color: var(--accent-color-1);
-}
-
-.article-details {
-    /* styles for article details (date, author) */
-}
-
-.article-content {
-    /* styles for article title, image, and description */
+    background-color: var(--accent-color-2);
 }
 
 .article-content img {
@@ -101,7 +93,7 @@ article {
 }
 
 footer {
-    background-color: var(--accent-color-2);
+    background-color: var(--accent-color-1);
     text-align: center;
     padding: 10px;
 }
@@ -110,7 +102,7 @@ footer {
     position: absolute;
     top: -40px;
     left: 0;
-    background-color: #f0f0f0;
+    background-color: var(--primary-color);
     color: var(--dark-color);
     padding: 8px;
     border: 1px solid var(--dark-color);

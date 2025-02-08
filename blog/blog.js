@@ -25,3 +25,21 @@ const articles = [
 		stars: '⭐⭐⭐⭐'
 	}
 ]
+
+document.addEventListener('DOMContentLoaded', () => {
+	const articlesSection = document.querySelector('.articles');
+	articles.forEach(article => {
+		const articleElement = document.createElement('article');
+		articleElement.innerHTML = `
+            <div class="article-details">
+                <time class="article-date">${article.date}</time>
+            </div>
+            <div class="article-content">
+                <h2>${article.title}</h2>
+                <img src="${article.imgSrc}" alt="${article.imgAlt}">
+                <p>${article.description}</p>
+            </div>
+        `;
+		articlesSection.appendChild(articleElement);
+	});
+});
