@@ -33,6 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		articleElement.innerHTML = `
             <div class="article-details">
                 <time class="article-date">${article.date}</time>
+				<p>Age: ${article.ages}</p>
+				<p>Genre: ${article.genre}</p>
+				<p>${article.stars}</p>
             </div>
             <div class="article-content">
                 <h2>${article.title}</h2>

@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Roboto+Slab:wght@100..900&family=Shadows+Into+Light&display=swap');
 
 :root {
-    --primary-color: #FFA69E;
-    --secondary-color: #FAF3DD;
-    --accent-color-1: #B8F2E6;
-    --accent-color-2: #AED9E0;
+    --primary-color: #463f3a;
+    --secondary-color: #f4f3ee;
+    --accent-color-1: #f4acb7;
+    --accent-color-2: #EFE4E0;
     --dark-color: #5E6472;
 }
 
 body {
     font-family: 'Roboto Slab', serif;
-    color: var(--dark-color);
+    color: var(--primary-color);
     margin: 0;
     background-color: var(--secondary-color);
 }
@@ -82,9 +82,29 @@ article {
     background-color: var(--accent-color-2);
 }
 
+.article-content h2 {
+    color: var(--primary-color);
+}
+
+.article-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.article-details p {
+    margin: 0;
+    font-size: .9em;
+    color: var(--primary-color);
+}
+
 .article-content img {
     max-width: 100%;
     height: auto;
+}
+
+.article-content h2 {
+    color: var(--primary-color);
 }
 
 .filter {
