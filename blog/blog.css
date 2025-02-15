@@ -139,6 +139,7 @@ main {
 .filter {
     border: 1px solid var(--dark-color);
     padding: 20px;
+    margin-bottom: 20px;
 }
 
 footer {
