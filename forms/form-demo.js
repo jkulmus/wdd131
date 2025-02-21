@@ -3,11 +3,12 @@ function validateForm(event) {
     const errors = [];
     let isValid = true;
 
+    // Add validation  here,
     if (!theForm.fullName.value.trim()) {
         isValid = false;
         errors.push("Full Name is required.");
     }
-  
+
     if (!isValid) {
       event.preventDefault();
       showErrors(errors);
@@ -16,19 +17,21 @@ function validateForm(event) {
 }
   
   function togglePaymentDetails(event) {
+    // get a reference to the form
     const theForm = event.target.form;
+    // reference to the credit card and PayPal containers
     const creditCardContainer = document.getElementById("creditCardContainer");
     const paypalContainer = document.getElementById("paypalContainer");
   
-    // Hide payment containers by adding the '.hide' class to each of them
+    // Hide payment containers 
     creditCardContainer.classList.add("hide");
     paypalContainer.classList.add("hide");
 
-    // Disable required for payment fields...if we hide a required field the browser will throw an error when we try to submit!
+    // Disable required for payment fields
     creditCardContainer.querySelector("input").removeAttribute("required");
     paypalContainer.querySelector("input").removeAttribute("required");
   
-    // Show the container based on the selected payment method, and add the required attribute back.
+    // Show the container based on the selected payment method
   if (event.target.value === "creditCard") {
     creditCardContainer.classList.remove("hide");
     creditCardContainer.querySelector("input").setAttribute("required", "required"); 
