@@ -3,10 +3,18 @@ function validateForm(event) {
     const errors = [];
     let isValid = true;
 
-    // Add validation  here,
-    if (!theForm.fullName.value.trim()) {
+    // Validate full name
+    if (!theForm.fullName.value.trim() !== "Bob") {
         isValid = false;
-        errors.push("Full Name is required.");
+        errors.push("Only people named 'Bob can submit the form.");
+    }
+
+    // Validate credit card number
+    if (theForm.paymentMethod.value === "crediCard") {
+        if (theForm.creditCardNumber.value !== "1234123412341234") {
+            isValid = false;
+            errors.push("Invalid Credit Card Number. Only the number '1234123412341234' is valid.");
+        }
     }
 
     if (!isValid) {
@@ -16,37 +24,34 @@ function validateForm(event) {
     }
 }
   
-  function togglePaymentDetails(event) {
-    // get a reference to the form
-    const theForm = event.target.form;
-    // reference to the credit card and PayPal containers
-    const creditCardContainer = document.getElementById("creditCardContainer");
-    const paypalContainer = document.getElementById("paypalContainer");
+function togglePaymentDetails(event) {
+    const theForm = document.querySelector("checkoutForm");
+    const creditCardContainer = document.getElementById("creditCardNumberContainer");
+    const paypalContainer = document.getElementById("paypalUsernameContainer");
   
     // Hide payment containers 
     creditCardContainer.classList.add("hide");
     paypalContainer.classList.add("hide");
 
     // Disable required for payment fields
-    creditCardContainer.querySelector("input").removeAttribute("required");
-    paypalContainer.querySelector("input").removeAttribute("required");
-  
+    theForm.creditCardNumber.required = false;
+    theForm.paypalUsername.required = false;
+
     // Show the container based on the selected payment method
-  if (event.target.value === "creditCard") {
+  if (theForm.paymentMethod.value === "creditCard") {
     creditCardContainer.classList.remove("hide");
-    creditCardContainer.querySelector("input").setAttribute("required", "required"); 
-  } else if (event.target.value === "paypal") {
+    theForm.creditCardNumber.required = true;
+  } else if (theForm.paymentMethod.value === "paypal") {
     paypalContainer.classList.remove("hide");
-    paypalContainer.querySelector("input").setAttribute("required", "required");
+    theForm.paypalUsername.required = true;
   }
 }
-  
-  // helper function to display our errors.
-  function showErrors(errors) {
+
+function showErrors(errors) {
     const errorEl = document.querySelector(".errors");
     const html = errors.map((error) => `<p>${error}</p>`);
     errorEl.innerHTML = html.join("");
-  }
+}
 
-  document.getElementById("paymentMethod").addEventListener("change", togglePaymentDetails);
-  document.getElementById("checkoutForm").addEventListener("submit", validateForm);
+document.getElementById("paymentMethod").addEventListener("change", togglePaymentDetails);
+document.getElementById("checkoutForm").addEventListener("submit", validateForm);
