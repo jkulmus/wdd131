@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card Form</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.png" type="png">
+</head>
+<body>
+    <h1>Credit Card Form</h1>
+    <form id="payment-form">
+        <div class="card-success" class="hidden">
+            <i class="fa fa-check"></i>
+            <p>Payment Successful!</p>
+        </div>
+        <div id="form-errors" class="hidden">
+            <i class="fa fa-exclamation-triangle"></i>
+            <p id="card-error"></p>
+        </div>
+        <div id="form-container">
+            <div id="card-front">
+                <div id="shadow"></div>
+                <div id="image-container">
+                    <span id="amount">paying: <strong>$99</strong></span>
+                    <span id="card-image"></span>
+                </div>
+                <label for="card-number">Card Number</label>
+                <input type="text" id="card-number" name="card-number" placeholder="XXXX XXXX XXXX XXXX" autocomplete="cc-number" inputmode="numeric" maxlength="19">
+                <div id="cardholder-">
+                    <label for="card-holder">Card Holder</label>
+                    <input type="text" id="card-holder" name="card-holder" placeholder="e.g. John Doe" autocomplete="cc-name">
+                </div>
+                <div id="exp-container">
+                    <label for="card-month">Experation</label>
+                    <input type="text" id="card-month" name="card-month" placeholder="MM" autocomplete="cc-exp-month" maxlength="2">
+                    <span></span>
+                    <input type="text" id="card-year" name="card-year" placeholder="YY" autocomplete="cc-exp-year" maxlength="2">
+                </div>
+                <div id="cvc-container">
+                    <label for="card-cvc">CVC/CVV</label>
+                    <input type="text" id="card-cvc" name="card-cvc" placeholder="XXX" autocomplete="cc-csc" maxlength="4">
+                </div>
+            </div>
+            <div id="card-back">
+                <div id="card-strip"></div>
+            </div>
+            <input type="hidden" id="card-token" name="stripeToken">
+            <button type="submit" id="card-btn">Submit</button>
+        </div>
+    </form>
+    <script src="script.js"></script>
+</body>
+</html>
