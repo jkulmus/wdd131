@@ -6,6 +6,7 @@
     <title>Credit Card Form</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="favicon.png" type="png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <form id="payment-form">
@@ -36,13 +37,13 @@
                     <label for="card-experation">Experation</label>
                     <input type="text" id="card-experation" name="card-experation" placeholder="MM/YY" autocomplete="experation" maxlength="5">
                 </div>
-                <div id="cvc-container">
-                    <label for="card-cvc">CVC/CVV</label>
-                    <input type="text" id="card-cvc" name="card-cvc" placeholder="XXX" autocomplete="cc-csc" maxlength="4">
-                </div>
             </div>
             <div id="card-back">
                 <div id="card-strip"></div>
+            </div>
+            <div id="cvc-container">
+                <label for="card-cvc">CVC/CVV</label>
+                <input type="text" id="card-cvc" name="card-cvc" placeholder="XXX" autocomplete="cc-csc" maxlength="4">
             </div>
             <input type="hidden" id="card-token" name="stripeToken">
             <button type="submit" id="card-btn">Submit</button>

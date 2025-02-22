@@ -1,18 +1,20 @@
 document.querySelector('form').addEventListener('submit', function(event) {
     event.preventDefault();
-    const cardNumber = document.getElementById('card-number').value;
-    const cardHolder = document.getElementById('card-holder').value;
-    const cardMonth = document.getElementById('card-month').value;
-    const cardYear = document.getElementById('card-year').value;
-    const cardCVC = document.getElementById('card-cvc').value;
+    
+    const cardNumber = document.getElementById('card-number').value.replace(/\s/g, '');
+    const cardHolder = document.getElementById('card-holder').value.trim();
+    const cardExpiration = document.getElementById('card-expiration').value.trim();
+    const cardCVC = document.getElementById('card-cvc').value.trim();
 
-    if (cardNumber.length !== 16) {
+    const expirationRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;  // Matches MM/YY format
+
+    if (!/^\d{16}$/.test(cardNumber)) {
         showError('Invalid card number');
     } else if (cardHolder === '') {
         showError('Card holder name is required');
-    } else if (!/^\d{2}$/.test(cardMonth) || !/^\d{2}$/.test(cardYear)) {
-        showError('Invalid expiry date');
-    } else if (cardCVC.length < 3 || cardCVC.length > 4) {
+    } else if (!expirationRegex.test(cardExpiration)) {
+        showError('Invalid expiry date (MM/YY)');
+    } else if (!/^\d{3,4}$/.test(cardCVC)) {
         showError('Invalid CVC');
     } else {
         showSuccess('Payment Successful!');
@@ -26,6 +28,7 @@ function showError(message) {
 }
 
 function showSuccess(message) {
+    document.getElementById('form-errors').classList.add('hidden');
     const successContainer = document.querySelector('.card-success');
     successContainer.classList.remove('hidden');
     successContainer.querySelector('p').textContent = message;

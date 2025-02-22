@@ -1,188 +1,180 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700,300');
 
+/* General Styles */
 body {
-    font-family: 'Lato', 'Helvetica-Light', sans-serif;
-    position: relative;
-    text-transform: uppercase;
-    background-color: #f0f0f0;
-    padding: 20px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
+  background-color: rgb(114, 113, 113);
+  font-family: 'Lato', 'Helvetica-Light', sans-serif;
+  text-transform: uppercase;
+  padding: 20px 0;
+  color: #fff;
+  display: grid;
+  place-items: center;
 }
 
-form {
-    width: 500px;
-    height: auto;
-    position: relative;
-    display: block;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-}
-
-#amount {
-    font-size: 12px;
-}
-
-#amount strong {
-    font-size: 14px;
-}
-
-#card-back {
-    top: 40px;
-    right: 0;
-    z-index: -2;
-}
-
-#card-btn {
-    background-color: rgba(251, 251, 251, 0.8);
-    color: #ffb242;
-    position: absolute;
-    bottom: -55px;
-    right: 0;
-    width: 150px;
-    border-radius: 8px;
-    height: 42px;
-    font-size: 12px;
-    font-family: 'Lato', 'Helvetica-Light', 'sans-serif';
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 400;
-    outline: none;
-    border: none;
-    cursor: pointer;
-}
-
-#card-btn:hover {
-    background-color: rgba(251, 251, 251, 1);
-}
-
-#card-cvc {
-    width: 60px;
-    margin-bottom: 0;
-}
-
-#card-front,
-#card-back {
-    position: absolute;
-    background-color: #498ee4;
-    width: 390px;
-    height: 250px;
-    border-radius: 6px;
-    padding: 20px 30px 0;
-    box-sizing: border-box;
-    font-size: 10px;
-    letter-spacing: 1px;
-    font-weight: 300;
-    color: white;
-}
-
-#form-container {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 300px;
-    display: grid;
-    grid-template-areas: 
-        "front"
-        "back"
-        "button";
-    gap: 10px;
-}
-
+/* Card Styling */
 #card-front, #card-back {
-    border-radius: 10px;
-    padding: 20px;
-    position: relative;
+  position: absolute;
+  background: linear-gradient(135deg, #6f98be, #3d5266);
+  width: 390px;
+  height: 250px;
+  border-radius: 10px;
+  padding: 20px 30px 0;
+  box-sizing: border-box;
+  font-size: 12px;
+  letter-spacing: 1px;
+  font-weight: 400;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
 }
 
 #card-front {
-    grid-area: front;
-    z-index: 2;
+  left: 20px;
+  top: 0px;
+  z-index: 2;
 }
 
 #card-back {
-    grid-area: back;
-    z-index: 1;
+  top: 50px;
+  left: 120px;
+  z-index: 1;
+  padding-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-right: 20px;
+  position: relative;
 }
 
-#shadow {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+/* Magnetic Stripe */
+#card-stripe {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background-color: black;
+  z-index: 3;
 }
 
-#image-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+/* Card Image */
+#card-image {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  height: 50px;
 }
 
-#amount {
-    font-size: 1.2em;
+/* CVC Positioning */
+#cvc-container {
+  position: absolute;
+  bottom: 80px;
+  right: 20px;
+  text-align: right;
+  z-index: 3;
 }
 
-.card-image {
-    height: 55px;
+#cvc-container label {
+  width: 100%;
+  font-size: 10px;
 }
 
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+#cvc-container input {
+  width: 60px;
+  text-align: center;
 }
 
-input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-family: 'Lato', 'Helvetica-Light', 'sans-serif';
-    font-size: 14px;
+/* Grid Layout */
+#form-container {
+  display: grid;
+  grid-template-rows: repeat(6, auto);
+  gap: 15px;
+  margin: auto;
+  width: 500px;
+  height: 320px;
+  position: relative;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
 }
 
-button {
-    grid-area: button;
-    padding: 10px;
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+#paying-amount {
+  grid-row: 1;
+  font-size: 18px;
+  font-weight: bold;
 }
 
-button:hover {
-    background-color: #218838;
+#card-number-title {
+  grid-row: 2;
+  font-size: 14px;
 }
 
-.hidden {
-    display: none;
+#card-number {
+  grid-row: 3;
+  width: 100%;
 }
 
-#card-success, #form-errors {
-    text-align: center;
-    margin-bottom: 20px;
+#card-holder-title {
+  grid-row: 4;
+  font-size: 14px;
 }
 
-#card-success i, #form-errors i {
-    font-size: 2em;
-    margin-bottom: 10px;
+#card-holder {
+  grid-row: 5;
+  width: 100%;
 }
 
-.invalid {
-    border-color: red;
+#exp-container {
+  grid-row: 6;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Button Styling */
+#card-btn {
+  background-color: rgba(251, 251, 251, 0.9);
+  color: #ffb242;
+  position: absolute;
+  bottom: -55px;
+  right: 0;
+  width: 160px;
+  border-radius: 8px;
+  height: 45px;
+  font-size: 14px;
+  font-weight: 600;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+#card-btn:hover {
+  background-color: #fff;
+  transform: scale(1.05);
+}
+
+/* Input Fields */
+input {
+  border: none;
+  outline: none;
+  background: rgba(151, 167, 188, 0.8);
+  height: 34px;
+  padding: 0 12px;
+  color: white;
+  font-size: 12px;
+  border-radius: 6px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus {
+  background: rgba(90, 157, 239, 1);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+/* Placeholder Styling */
+input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
 }
