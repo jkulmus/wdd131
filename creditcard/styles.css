@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700,300');
+
 body {
-    background-color: #ffb242;
-    font-family: lato, 'helvetica-light';
+    font-family: 'Lato', 'Helvetica-Light', sans-serif;
     position: relative;
     text-transform: uppercase;
+    background-color: #f0f0f0;
     padding: 20px 0;
     display: flex;
     justify-content: center;
@@ -11,15 +13,15 @@ body {
     margin: 0;
 }
 
-h1 {
-    text-align: center;
-}
-
 form {
     width: 500px;
-    height: 290px;
+    height: auto;
     position: relative;
     display: block;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
 }
 
 #amount {
@@ -37,7 +39,7 @@ form {
 }
 
 #card-btn {
-    background-color: rgba(251, 251, 251, .8);
+    background-color: rgba(251, 251, 251, 0.8);
     color: #ffb242;
     position: absolute;
     bottom: -55px;
@@ -46,7 +48,7 @@ form {
     border-radius: 8px;
     height: 42px;
     font-size: 12px;
-    font-family: lato, 'helvetica-light', 'sans-serif';
+    font-family: 'Lato', 'Helvetica-Light', 'sans-serif';
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 400;
@@ -79,74 +81,108 @@ form {
     color: white;
 }
 
-.card-image {
-    max-width: 100%;
-    height: auto;
-}
-
-#card-month {
-    width: 40% !important;
-}
-
-#card-number,
-#card-holder {
-    width: 100%;
-}
-
-#card-strip {
-    width: 100%;
-    height: 55px;
-    background-color: #3d5266;
-    position: absolute;
-    right: 0;
-}
-
-#card-success {
-    color: #00b349;
-}
-
-#card-token {
-    display: none;
-}
-
-#card-year {
-    width: 45%;
-    float: right;
-}
-
-#cardholder-container {
-    width: 60%;
-    display: inline-block;
-}
-
-#cvc-container {
-    position: absolute;
-    width: 110px;
-    right: -115px;
-    bottom: -10px;
-    padding-left: 20px;
-    box-sizing: border-box;
-}
-
 #form-container {
-    margin: auto;
-    width: 500px;
-    height: 290px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    display: grid;
+    grid-template-areas: 
+        "front"
+        "back"
+        "button";
+    gap: 10px;
+}
+
+#card-front, #card-back {
+    border-radius: 10px;
+    padding: 20px;
     position: relative;
 }
 
-#form-errors {
-    color: #eb0000;
+#card-front {
+    grid-area: front;
+    z-index: 2;
 }
 
-#form-errors,
-#card-success {
-    background-color: white;
-    width: 500px;
-    margin: 0 auto 10px;
-    height: 50px;
-    border-radius: 8px;
-    padding: 0 20px;
-    font-weight: 400;
-    box-sizing: border-box;
+#card-back {
+    grid-area: back;
+    z-index: 1;
+}
+
+#shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+#image-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#amount {
+    font-size: 1.2em;
+}
+
+.card-image {
+    height: 55px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Lato', 'Helvetica-Light', 'sans-serif';
+    font-size: 14px;
+}
+
+button {
+    grid-area: button;
+    padding: 10px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+.hidden {
+    display: none;
+}
+
+#card-success, #form-errors {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#card-success i, #form-errors i {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.invalid {
+    border-color: red;
 }
