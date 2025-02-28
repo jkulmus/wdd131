@@ -1,12 +1,12 @@
-document.querySelector('form').addEventListener('submit', function(event) {
+document.getElementById('card-btn').addEventListener('click', function(event) {
     event.preventDefault();
     
     const cardNumber = document.getElementById('card-number').value.replace(/\s/g, '');
     const cardHolder = document.getElementById('card-holder').value.trim();
-    const cardExpiration = document.getElementById('card-expiration').value.trim();
+    const cardExpiration = document.getElementById('card-month').value.trim();
     const cardCVC = document.getElementById('card-cvc').value.trim();
 
-    const expirationRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;  // Matches MM/YY format
+    const expirationRegex = /^(0[1-9]|1[0-2])\/\d{2}$/; 
 
     if (!/^\d{16}$/.test(cardNumber)) {
         showError('Invalid card number');
@@ -29,7 +29,7 @@ function showError(message) {
 
 function showSuccess(message) {
     document.getElementById('form-errors').classList.add('hidden');
-    const successContainer = document.querySelector('.card-success');
+    const successContainer = document.getElementById('card-success');
     successContainer.classList.remove('hidden');
     successContainer.querySelector('p').textContent = message;
 }

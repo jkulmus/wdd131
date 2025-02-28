@@ -1,12 +1,25 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700,300');
 
+/* CSS Variables */
+:root {
+    --background-color: rgb(114, 113, 113);
+    --font-family: 'Lato', 'Helvetica-Light', sans-serif;
+    --text-color: #fff;
+    --card-gradient: linear-gradient(135deg, #6f98be, #3d5266);
+    --button-bg-color: rgba(251, 251, 251, 0.9);
+    --button-hover-bg-color: #fff;
+    --input-bg-color: rgba(151, 167, 188, 0.8);
+    --input-focus-bg-color: rgba(90, 157, 239, 1);
+    --input-placeholder-color: rgba(255, 255, 255, 0.7);
+}
+
 /* General Styles */
 body {
-    background-color: rgb(114, 113, 113);
-    font-family: 'Lato', 'Helvetica-Light', sans-serif;
+    background-color: var(--background-color);
+    font-family: var(--font-family);
     text-transform: uppercase;
     padding: 20px 0;
-    color: #fff;
+    color: var(--text-color);
     display: grid;
     place-items: center;
 }
@@ -14,11 +27,11 @@ body {
 /* Card Styling */
 #card-front, #card-back {
     position: absolute;
-    background: linear-gradient(135deg, #6f98be, #3d5266);
+    background: var(--card-gradient);
     width: 390px;
     height: 250px;
     border-radius: 10px;
-    padding: 20px 30px 0;
+    padding: 20px 30px;
     box-sizing: border-box;
     font-size: 12px;
     letter-spacing: 1px;
@@ -32,6 +45,11 @@ body {
     left: 20px;
     top: 0px;
     z-index: 2;
+    display: grid;
+    grid-template-rows: auto auto auto auto auto;
+    grid-template-columns: 1fr auto;
+    gap: 5px;
+    padding-bottom: 10px;
 }
 
 #card-back {
@@ -49,20 +67,21 @@ body {
 /* Magnetic Stripe */
 #card-stripe {
     position: absolute;
-    top: 20px;
+    top: 30px;
     left: 0;
     width: 100%;
-    height: 20px; /* Reduced height */
+    height: 48px;
     background-color: black;
     z-index: 3;
 }
 
 /* Card Image */
 #card-image {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    height: 50px;
+    grid-column: 2;
+    grid-row: 1;
+    height: 55px;
+    justify-self: end;
+    align-self: start;
 }
 
 /* CVC Positioning */
@@ -103,65 +122,70 @@ body {
     grid-row: 1;
     font-size: 18px;
     font-weight: bold;
+    justify-self: start;
+}
+
+#card-number-title,
+#card-holder-title {
+    grid-column: 1 / 3;
+    font-size: 12px;
+    text-align: left;
+}
+
+#card-holder-title { grid-row: 4; }
+#card-holder {
+    grid-column: 1;
+    grid-row: 5;
+    width: 90%;
+    font-size: 1.2em;
+    padding: 6px 12px;
+    border-radius: 8px;
 }
 
 #card-number-title {
     grid-column: 1;
     grid-row: 2;
-    font-size: 14px;
+    text-align: left;
 }
 
 #card-number {
     grid-column: 1;
     grid-row: 3;
-    width: 95%;
+    width: 100%;
     font-size: 1.2em;
-    letter-spacing: 2px;
-    padding: 6px 12px; 
-    border-radius: 8px;
-}
-
-#card-holder-title {
-    grid-column: 1;
-    grid-row: 4;
-    font-size: 14px;
-}
-
-#card-holder {
-    grid-column: 1;
-    grid-row: 5;
-    width: 95%;
-    font-size: 1.2em;
-    padding: 6px 12px; 
+    padding: 6px 12px;
     border-radius: 8px;
 }
 
 #exp-container {
     grid-column: 2;
-    grid-row: 2 / 4;
+    grid-row: 5;
+    justify-self: end;
+    align-self: start;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
 }
 
 #exp-container label {
-    font-size: 14px;
-    margin-bottom: 5px;
+    font-size: 12px;
+    margin-bottom: 3px;
+    text-align: left;
 }
 
 #exp-container input {
-    width: 30%;
-    font-size: 1.2em;
-    padding: 6px 12px;
+    width: 60px;
+    font-size: 1em;
+    padding: 4px 8px;
     border-radius: 8px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     text-align: center;
 }
 
 /* Button Styling */
 #card-btn {
-    background-color: rgba(251, 251, 251, 0.9);
-    color: #ffb242;
+    background-color: var(--button-bg-color);
+    color: #cd8923;
     position: absolute;
     bottom: -55px;
     right: 0;
@@ -178,7 +202,7 @@ body {
 }
 
 #card-btn:hover {
-    background-color: #fff;
+    background-color: var(--button-hover-bg-color);
     transform: scale(1.05);
 }
 
@@ -186,23 +210,48 @@ body {
 input {
     border: none;
     outline: none;
-    background: rgba(151, 167, 188, 0.8);
-    height: 34px;
-    padding: 0 12px;
+    background: var(--input-bg-color);
+    height: 30px;
+    padding: 0 10px;
     color: white;
     font-size: 12px;
-    border-radius: 6px;
+    border-radius: 8px;
     box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
     transition: background 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 5px;
 }
 
 input:focus {
-    background: rgba(90, 157, 239, 1);
+    background: var(--input-focus-bg-color);
     box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    outline: 2px solid var(--input-focus-bg-color);
 }
 
 /* Placeholder Styling */
 input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--input-placeholder-color);
     font-size: 12px;
+}
+
+.card-image {
+    height: 55px;
+}
+
+/* Media Queries */
+@media (max-width: 600px) {
+    #form-container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    #card-front, #card-back {
+        width: 100%;
+        height: auto;
+        padding: 15px;
+    }
+
+    #card-btn {
+        width: 100%;
+        bottom: -45px;
+    }
 }
