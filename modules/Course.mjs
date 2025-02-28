@@ -17,6 +17,10 @@ const aCourse = {
         instructor: "Sis A",
       },
     ],
+    init: function () {
+      setCourseInfo(this);
+      renderSections(this.sections);
+    },
     changeEnrollment: function (sectionNum, add = true) {
       const sectionIndex = this.sections.findIndex(
         (section) => section.sectionNum == sectionNum
@@ -27,30 +31,28 @@ const aCourse = {
         } else {
           this.sections[sectionIndex].enrolled--;
         }
-        this.renderSections(this.sections);
+        renderSections(this.sections);
       }
     },
-    setCourseInfo: function () {
-      const courseName = document.querySelector("#courseName");
-      const coursecode = document.querySelector("#courseCode");
-      courseName.textContent = this.name;
-      coursecode.textContent = this.code;
-    },
-    renderSections: function (sections) {
-      const html = sections.map(
-        (section) => `<tr>
+  };
+  
+  function setCourseInfo(course) {
+    const courseName = document.querySelector("#courseName");
+    const coursecode = document.querySelector("#courseCode");
+    courseName.textContent = course.name;
+    coursecode.textContent = course.code;
+  }
+  
+  function renderSections(sections) {
+    const html = sections.map(
+      (section) => `<tr>
         <td>${section.sectionNum}</td>
         <td>${section.roomNum}</td>
         <td>${section.enrolled}</td>
         <td>${section.days}</td>
         <td>${section.instructor}</td></tr>`
-      );
-      document.querySelector("#sections").innerHTML = html.join("");
-    },
-    init: function () {
-      this.setCourseInfo();
-      this.renderSections(this.sections);
-    }
-  };
+    );
+    document.querySelector("#sections").innerHTML = html.join("");
+  }
   
-export default aCourse;
+  export default aCourse;
