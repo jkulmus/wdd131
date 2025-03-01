@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <input id="activity$(count)" type="text" name="activity${count}">
                 </div>
                 <div class="item">
-                    <label for+"fee${count}">Fee ($)<spand>*</span></label>
+                    <label for="fee${count}">Fee ($)<spand>*</span></label>
                     <input id="fee${count}" type="number" name="fee${count}">
                 </div>
                 <div class="item">
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function successTemplate(info) {
         return `
-            <p>Thank you %{info.name} for registering. You have registered ${info.participants} participants and owe $${info.fee} in Fees.</p>
+            <p>Thank you ${info.name} for registering. You have registered ${info.participants} participants and owe $${info.fee} in fees.</p>
             `;
     }
 });
