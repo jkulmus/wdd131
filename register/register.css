@@ -199,7 +199,7 @@
   button:hover {
     background: #00b33c;
   }
-  
+
   @media (max-width: 568px) {
     .columns div {
       width: 100%;
