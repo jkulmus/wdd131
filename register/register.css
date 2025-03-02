@@ -1,153 +1,143 @@
 * {
     box-sizing: border-box;
-  }
+}
 
-  body {
+body {
     font-family: Roboto, Arial, sans-serif;
     font-size: 16px;
     color: #666;
     line-height: 22px;
-  }
+}
 
-  div,
-  form,
-  input,
-  select,
-  textarea,
-  label,
-  p {
+div, form, input, select, textarea, label, p {
     padding: 0;
     margin: 0;
     outline: none;
     font-size: 16px;
     line-height: 24px;
-  }
+}
 
-  .testbox {
+.testbox {
     padding: 20px;
     max-width: 960px;
     margin: 0 auto;
-  }
+}
 
-  form {
+form {
     padding: 20px;
     border-radius: 6px;
     background: #fff;
     box-shadow: 0 0 8px #006622;
-  }
+}
 
-  fieldset {
+fieldset {
     margin-bottom: 2em;
-  }
+}
 
-  input,
-  select,
-  textarea {
+input, select, textarea {
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 3px;
-  }
+}
 
-  input {
+input {
     width: 100%;
     padding: 5px;
-  }
+}
 
-  input[type="checkbox"] {
+input[type="checkbox"] {
     width: auto;
     margin-right: 1em;
-  }
+}
 
-  input[type="date"] {
+input[type="date"] {
     padding: 4px 5px;
-  }
+}
 
-  textarea {
+textarea {
     width: 100%;
     padding: 5px;
-  }
+}
 
-  .item:hover p,
-  .item:hover i,
-  .question:hover p,
-  .question label:hover,
-  input:hover::placeholder {
+.item:hover p, .item:hover i, .question:hover p, .question label:hover, input:hover::placeholder {
     color: #006622;
-  }
+}
 
-  .item input:hover,
-  .item select:hover,
-  .item textarea:hover {
+.item input:hover, .item select:hover, .item textarea:hover {
     border: 1px solid transparent;
     box-shadow: 0 0 3px 0 #006622;
     color: #006622;
-  }
+}
 
-  .item {
-    position: relative;
+.item {
     margin: 10px 0;
-  }
+}
 
-  .item span {
+.item span {
     color: red;
-  }
+}
 
-
-  .columns {
+.columns {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
     flex-wrap: wrap;
-  }
+}
 
-  .columns div {
+.columns div {
     width: 48%;
-  }
+}
 
-  .participants {
+.participants {
     display: grid;
     grid-template-columns: 1fr;
     gap: 10px;
-  }
+}
 
-  .participants section {
+.participants section {
     grid-column: 1 / -1;
-  }
+}
 
-  .participants button {
+.participants button {
     grid-column: 1 / -1;
-  }
+}
 
-  @media (min-width: 768px) {
+@media (min-width: 768px) {
     .participants {
         grid-template-columns: repeat(2, 1fr);
     }
     .participants button {
         grid-column: 1 / -1;
     }
-  }
+}
 
-  /* Style checkbox and radio. To do this we have to hide the defaults then we create our own */
-  input[type="radio"] {
+@media (max-width: 480px) {
+    .columns div {
+        width: 100%;
+    }
+}
+
+/* Style checkbox and radio. To do this we have to hide the defaults then we create our own */
+input[type="radio"] {
     display: none;
-  }
+}
 
-  label.radio {
+label.radio {
     position: relative;
     display: inline-block;
     margin: 5px 20px 15px 0;
     cursor: pointer;
-  }
+}
 
-  .question span {
+.question span {
     margin-left: 30px;
-  }
+}
 
-  .question-answer label {
+.question-answer label {
     display: block;
-  }
+}
 
-  label.radio:before {
+label.radio:before {
     content: "";
     position: absolute;
     left: 0;
@@ -155,14 +145,13 @@
     height: 17px;
     border-radius: 50%;
     border: 2px solid #ccc;
-  }
+}
 
-  input[type="radio"]:checked + label:before,
-  label.radio:hover:before {
+input[type="radio"]:checked + label:before, label.radio:hover:before {
     border: 2px solid #006622;
-  }
+}
 
-  label.radio:after {
+label.radio:after {
     content: "";
     position: absolute;
     top: 6px;
@@ -174,18 +163,30 @@
     border-right: none;
     transform: rotate(-45deg);
     opacity: 0;
-  }
+}
 
-  input[type="radio"]:checked + label:after {
+input[type="radio"]:checked + label:after {
     opacity: 1;
-  }
-  /* end style checkbox and radio */
-  .btn-block {
+}
+
+/* Focus Styles */
+input:focus, select:focus, textarea:focus {
+    border: 2px solid #006622;
+    box-shadow: 0 0 5px #006622;
+}
+
+/* Error Handling */
+input.error, select.error, textarea.error {
+    border: 2px solid red;
+    box-shadow: 0 0 5px red;
+}
+
+.btn-block {
     margin-top: 10px;
     text-align: center;
-  }
+}
 
-  button {
+button {
     width: 150px;
     padding: 10px;
     border: none;
@@ -194,14 +195,8 @@
     font-size: 16px;
     color: #fff;
     cursor: pointer;
-  }
+}
 
-  button:hover {
+button:hover {
     background: #00b33c;
-  }
-
-  @media (max-width: 568px) {
-    .columns div {
-      width: 100%;
-    }
-  }
+}
