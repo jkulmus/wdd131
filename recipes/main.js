@@ -23,13 +23,13 @@ function displayRecipes(recipesArray) {
         const rating = document.createElement('span');
         rating.classList.add('rating');
         rating.setAttribute('role', 'img');
-        rating.setAttribute('aria-label', 'Rating: ${recipe.rating} out of 5 stars');
+        rating.setAttribute('aria-label', `Rating: ${recipe.rating} out of 5 stars`);
 
         for (let i = 0; i < 5; i++) {
             const star = document.createElement('span');
             star.setAttribute('aria-hidden', 'true');
-            star.classList.add('icon-star');
-            star.textContent = i < Math.floor(recipe.rating) ? '⭐' : '☆';
+            star.classList.add(i < Math.floor(recipe.rating) ? 'icon-star' : 'icon-star-empty');
+            star.textContent = '⭐';
             rating.appendChild(star);
         }
 
