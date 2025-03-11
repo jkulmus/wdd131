@@ -68,77 +68,76 @@ const hikes = [
    const simpleList = ["oranges", "grapes", "lemons", "apples", "Bananas", "watermelons", "coconuts", "broccoli", "mango"];
 
    // Simple Sort
-   let simpleSort = simpleList.slice().sort();
-   console.log("Simple Sort:", simpleSort);
+let simpleSort = simpleList.slice().sort();
+console.log("Simple Sort:", simpleSort);
 
-   // Compare functions - ascending (case-insensitive)
-   function compareFn(a, b) {
-    if (a.toLowerCase() < b.toLowerCase()) {
-        return -1;
-    } else if (a.toLowerCase > b.toLowerCase) {
-        return 1;
-    }
-    return 0;
-   }
+// Compare functions - ascending (case-insensitive)
+function compareFn(a, b) {
+  if (a.toLowerCase() < b.toLowerCase()) {
+    return -1;
+  } else if (a.toLowerCase() > b.toLowerCase()) {
+    return 1;
+  }
+  return 0;
+}
 
-   let anotherSort = simpleList.slice().sort(compareFn);
-   console.log("Another Sort (Assending):", anotherSort);
+let anotherSort = simpleList.slice().sort(compareFn);
+console.log("Another Sort (Ascending):", anotherSort);
 
-   // Compare functions - descending (case-insensitive)
-   function compareFnDescending(a, b) {
-    if (a.toLowerCase() < b.toLowerCase()) {
-        return 1;
-    } else if (a.toLowerCase() > b.toLowerCase()) {
-        return -1;
-    }
-    return 0;
-   }
+// Compare functions - descending (case-insensitive)
+function compareFnDescending(a, b) {
+  if (a.toLowerCase() < b.toLowerCase()) {
+    return 1;
+  } else if (a.toLowerCase() > b.toLowerCase()) {
+    return -1;
+  }
+  return 0;
+}
 
-   let descendingSort = simpleList.slice().sort(compareFnDescending);
-   console.log("Descending Sort:", descendingSort);
+let descendingSort = simpleList.slice().sort(compareFnDescending);
+console.log("Descending Sort:", descendingSort);
 
-   // Filter list of strings
-   function searchList(list, query) {
-    function searchCallback(item) {
-        return item.toLowerCase().includes(query.toLowerCase());
-    }
+// Filter list of strings
+function searchList(list, query) {
+  function searchCallback(item) {
+    return item.toLowerCase().includes(query.toLowerCase());
+  }
+  return list.filter(searchCallback);
+}
 
-    return list.filter(searchCallback);
-   }
+// Test searchList
+let searchResultsStrings = searchList(simpleList, "b");
+console.log("Search results for 'b':", searchResultsStrings);
 
-   // Test searchList
-   let searchResultsStrings = searchList(simpleList, "b");
-   console.log("Search results for 'b':", searchResultsStrings);
+searchResultsStrings = searchList(simpleList, "B");
+console.log("Search results for 'B':", searchResultsStrings);
 
-   searchResultsStrings = searchList(simpleList, "B");
-   console.log("Search results for 'B':", searchResultsStrings);
+searchResultsStrings = searchList(simpleList, "ap");
+console.log("Search results for 'ap':", searchResultsStrings);
 
-   searchResultsStrings = searchList(simpleList, "ap");
-   console.log("Search results for 'ap':", searchResultsStrings);
+// Sorting and Filtering
+function searchList(list, query) {
+  function searchCallback(item) {
+    const lowerQuery = query.toLowerCase();
+    const lowerName = item.name.toLowerCase();
+    const lowerDescription = item.description.toLowerCase();
+    const foundInTags = item.tags.find((tag) => tag.toLowerCase().includes(lowerQuery));
 
-   // Sorting and Filtering
-   function searchList(list, query) {
-    function searchCallback(item) {
-        const lowerQuery = query.toLowerCase();
-        const lowerName = item.name.toLowerCase();
-        const lowerDescription = item.description.toLowerCase();
-        const foundInTags = item.tags.find((tag) => tag.toLowerCase().includes(lowerQuery));
+    return (
+      lowerName.includes(lowerQuery) ||
+      lowerDescription.includes(lowerQuery) ||
+      !!foundInTags
+    );
+  }
+  return list.filter(searchCallback);
+}
 
-        return (
-            lowerName.includes(lowerQuery) ||
-            lowerDescription.includes(lowerQuery) ||
-            !!foundInTags
-        );
-    }
-    return list.filter(searchCallback);
-   }
+let searchResults = searchList(hikes, "al");
+console.log("Search results for 'al':", searchResults);
 
-   let searchResults = searchList(hikes, "al");
-   console.log("Search results for 'al':", searchResults);
+searchResults.sort((a, b) => a.name.length - b.name.length);
+console.log("Sorted by name length:", searchResults);
 
-   searchResults.sort((a, b) => a.name.length - b.name.length);
-   console.log("Sorted by name length:", searchResults);
-
-   searchResults = searchList(hikes, "al");
-   searchResults.sort((a, b) => parseFloat(a.distance.split(' ')[0]) - parseFloat(b.distance.split(' ')[0]));
-   console.log("Sorted by distance:", searchResults);
+searchResults = searchList(hikes, "al");
+searchResults.sort((a, b) => parseFloat(a.distance.split(' ')[0]) - parseFloat(b.distance.split(' ')[0]));
+console.log("Sorted by distance:", searchResults);
