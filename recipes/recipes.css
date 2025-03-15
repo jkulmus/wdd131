@@ -10,6 +10,7 @@
     --third-font: "Shadows Into Light Two", cursive;
 }
 
+/* Links */
 a {
     color: #d8e1e6;
     text-decoration: none;
@@ -19,6 +20,7 @@ a:hover {
     text-decoration: underline;
 }
 
+/* Body */
 body {
     font-family: var(--primary-font);
     background-color: var(--text-light);
@@ -26,6 +28,7 @@ body {
     padding: 0;
 }
 
+/* Header */
 header {
     background-color: var(--primary-color);
     color: var(--text-light);
@@ -49,6 +52,7 @@ header h1 {
     margin: 0;
 }
 
+/* Search */
 .search {
     display: flex;
     justify-content: center;
@@ -72,37 +76,11 @@ header h1 {
     cursor: pointer;
 }
 
-.search button:focus {
+.search button:focus, .search input:focus {
     outline: 2px solid var(--primary-color);
 }
 
-.tag-filters {
-    display: flex;
-    justify-content: center;
-    margin: 1em 0;
-    flex-wrap: wrap;
-}
-
-.tag-filters button {
-    padding: 0.5em 1em;
-    margin: 0.5em;
-    background-color: #ddd;
-    color: var(--primary-color);
-    border: none;
-    cursor: pointer;
-}
-
-.tag-filters button:hover,
-.tag-filters button.active {
-    background-color: var(--primary-color);
-    color: var(--text-light);
-}
-
-.tag-filters button.active {
-    background-color: var(--primary-color);
-    color: var(--text-light);
-}
-
+/* Recipes Container */
 #recipes-container {
     display: flex;
     flex-direction: column;
@@ -147,6 +125,7 @@ header h1 {
     color: lightgray;
 }
 
+/* Footer */
 footer {
     background-color: var(--primary-color);
     color: var(--text-light);
@@ -165,6 +144,7 @@ footer .attribution {
     margin: 0 0.5em;
 }
 
+/* Media Queries */
 @media (min-width: 960px) {
     #recipes-container {
         max-width: 960px;

@@ -1,7 +1,7 @@
-import recipes from './recipes.mjs';
+import recipes from "./recipes.mjs";
 
 function random(num) {
-  return Math.floor(Math.random() * num);
+    return Math.floor(Math.random() * num);
 }
 
 function getRandomListEntry(list) {
@@ -38,7 +38,7 @@ function recipeTemplate(recipe) {
             <ul class="recipe__tags">
                 ${tagsTemplate(recipe.tags)}
             </ul>
-            <h2><a href="#">${recipe.name}</a></h2>
+            <h2>${recipe.name}</h2>
             <p class="recipe__ratings">
                 ${ratingTemplate(recipe.rating)}
             </p>
@@ -50,11 +50,15 @@ function recipeTemplate(recipe) {
 }
 
 function renderRecipes(recipeList) {
-    const recipeSection = document.getElementById('recipeSection');
+    const recipeSection = document.getElementById('recipes-container');
     let html = '';
-    recipeList.forEach(recipe => {
-        html += recipeTemplate(recipe);
-    });
+    if (recipeList.length === 0) {
+        html = '<p>No recipes found. Please try a different search term.</p>';
+    } else {
+        recipeList.forEach(recipe => {
+            html += recipeTemplate(recipe);
+        });
+    }
     recipeSection.innerHTML = html;
 }
 
@@ -65,16 +69,26 @@ function init() {
 
 init();
 
-function filterRecipes(query) {
+function filterRecipes(query, filters = {}) {
     const lowerQuery = query.toLowerCase();
-    const filtered = recipes.filter(recipes => {
-        return (
-            recipe.name.toLowerCase().includes(lowerQuery) ||
-            recipe.description.toLowerCase().includes(lowerQuery) ||
-            recipe.tags.find(tag => tag.toLowerCase().includes(lowerQuery)) ||
-            recipe.recipeIngredient.find(ingredient => ingredient.toLowerCase().includes(lowerQuery))
-        );
-    });
+    let filtered = recipes;
+
+    if (query) {
+        filtered = filtered.filter(recipe => {
+            return (
+                recipe.name.toLowerCase().includes(lowerQuery) ||
+                recipe.description.toLowerCase().includes(lowerQuery) ||
+                recipe.tags.find(tag => tag.toLowerCase().includes(lowerQuery)) ||
+                recipe.recipeIngredient.find(ingredient => ingredient.toLowerCase().includes(lowerQuery))
+            );
+        });
+    }
+
+    if (filters.tags && filters.tags.length > 0) {
+        filtered = filtered.filter(recipe => {
+            return filters.tags.every(tag => recipe.tags.map(t => t.toLowerCase()).includes(tag.toLowerCase()));
+        });
+    }
 
     const sorted = filtered.sort((a, b) => {
         if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
@@ -87,10 +101,26 @@ function filterRecipes(query) {
 
 function searchHandler(e) {
     e.preventDefault();
-    const searchInput = document.getElementById('searchInput');
+    const searchInput = document.getElementById('search-input');
     const query = searchInput.value;
-    const filteredRecipies = filterRecipes(query);
-    renderRecipes(filteredRecipies);
+    const filteredRecipes = filterRecipes(query);
+    renderRecipes(filteredRecipes);
 }
 
-document.getElementById('searchForm').addEventListener('submit', searchHandler);
+function debounce(func, delay) {
+    let timeoutId;
+    return function(...args) {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+            func.apply(this, args);
+        }, delay);
+    };
+}
+
+const searchInput = document.getElementById('search-input');
+searchInput.addEventListener('input', debounce(searchHandler, 300));
+
+document.getElementById('search-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    searchHandler(e);
+});
