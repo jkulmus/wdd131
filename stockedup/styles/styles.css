@@ -90,3 +90,63 @@ main {
     padding: 20px;
 }
 
+section {
+    margin-bottom: 2em;
+    padding: 15px;
+    background-color: var(--section-background);
+    border-radius: 8px;
+    box-shadow: var(--section-box-shadow);
+}
+
+section h2, section h3 {
+    font-family: var(--heading-font);
+    color: var(--headline-color);
+    margin-bottom: 0.7em;
+}
+
+/* Paragraph */
+p {
+    margin-bottom: 1em;
+}
+
+/* Button */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--button-primary-bg);
+    color: var(--button-primary-hover-text);
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 1em;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.button:hover {
+    background-color: var(--button-primary-hover-bg);
+    color: var(--button-primary-hover-text);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1em 0;
+    background-color: var(--footer-background);
+    color: var(--footer-text);
+    position: fixed; /* Consider 'sticky' or remove for different layouts */
+    bottom: 0;
+    width: 100%;
+}
+
+/* Inventory list style */
+#inventoryList {
+    margin-top: 1em;
+}
+
+/* Expiring items style */
+#expiringItems {
+    margin-top: 1em;
+}
