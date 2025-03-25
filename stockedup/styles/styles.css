@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Boldonse&family=Shadows+Into+Light+Two&display=swap');
+
+:root {
+    /* My color palatte */
+    --primary-color: #D8C0C5;
+    --secondary-color: #EDE8E9;
+    --accent1-color: #3D2D31;
+    --accent2-color: #6A2437;
+    --text-color: #333;
+
+    /* Fonts */
+    --heading-font: "Boldonse", system-ui;
+    --paragraph-font: "Shadows Into Light Two", cursive;
+
+    /* Colors for readability and consistency */
+    --headline-color: var(--accent1-color);
+    --paragraph-color: var(--text-color);
+    --background-color:var(--secondary-color);
+    --header-background:var(--primary-color);
+    --header-text:var(--accent1-color);
+    --nav-background:var(--accent1-color);
+    --nav-text: var(--secondary-color);
+    --nav-hover-bg: var(--accent2-color);
+    --nav-hover-text: white;
+    --button-primary-bg: var(--accent1-color);
+    --button-primary-hover-bg: var(--accent2-color);
+    --button-primary-hover-text: white;
+    --section-background: white;
+    --section-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --footer-background: var(--primary-color);
+    --footer-text: var(--accent1-color);
+    --border-color: #ccc;
+}
+
+/* Basic reset and body styles */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--paragraph-font);
+    color: var(--paragraph-color);
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background-color: var(--header-background);
+    color: var(--header-text);
+    padding: 1em 0;
+    text-align: center;
+}
+
+header h1 {
+    margin-bottom: 0.2em;
+}
+
+/* Navigation */
+nav {
+    background-color: var(--nav-background);
+    display: flex;
+    justify-content: center;
+    padding: 0.5em 0;
+}
+
+nav a {
+    color: var(--nav-text);
+    text-decoration: none;
+    padding: 0.7em 1.2em;
+    margin: 0 0.5em;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: var(--nav-hover-bg);
+    color: var(--nav-hover-text);
+}
+
+nav a.active { 
+    background-color: var(--accent2-color);
+    color: var(--secondary-color);
+}
+
+/* Main */
+main {
+    padding: 20px;
+}
+
