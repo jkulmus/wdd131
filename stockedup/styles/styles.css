@@ -9,18 +9,18 @@
     --text-color: #333;
 
     /* Fonts */
-    --heading-font: "Boldonse", system-ui;
-    --paragraph-font: "Shadows Into Light Two", cursive;
+    --heading-font: "Shadows Into Light Two", cursive;
+    --paragraph-font: "Boldonse", system-ui;
 
     /* Colors for readability and consistency */
     --headline-color: var(--accent1-color);
     --paragraph-color: var(--text-color);
-    --background-color:var(--secondary-color);
-    --header-background:var(--primary-color);
-    --header-text:var(--accent1-color);
-    --nav-background:var(--accent1-color);
+    --background-color: var(--secondary-color);
+    --header-background: var(--primary-color);
+    --header-text: var(--accent1-color);
+    --nav-background: var(--accent1-color);
     --nav-text: var(--secondary-color);
-    --nav-hover-bg: var(--accent2-color);
+    --nav-hover-bg: var(--primary-color);
     --nav-hover-text: white;
     --button-primary-bg: var(--accent1-color);
     --button-primary-hover-bg: var(--accent2-color);
@@ -149,4 +149,26 @@ footer {
 /* Expiring items style */
 #expiringItems {
     margin-top: 1em;
+}
+
+/* Media Queries for Responsiveness */
+
+/* Min-width: 768px */
+@media (min-width: 768px) {
+    main {
+        padding: 30px;
+    }
+
+    nav {
+        justify-content: flex-start;
+        padding-left: 20px;
+    }
+}
+
+/* Larger screens (min-width: 1024px) */
+@media (min-width: 1024px) {
+    main {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
 }
