@@ -1,4 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const randomImagesDiv = document.getElementById('randomImages');
+    const imagesUrls = [
+        'styles/home/1.jpg',
+        'styles/home/2.jpg',
+        'styles/home/3.jpg',
+        'styles/home/4.jpg',
+        'styles/home/5.jpg',
+        'styles/home/6.jpg',
+        'styles/home/7.jpg',
+        'styles/home/8.jpg',
+        'styles/home/9.jpg',
+        'styles/home/10.jpg'
+    ];
+
+    function loadRandomImages() {
+        randomImagesDiv.innerHTML = '';
+        const shuffledImages = imagesUrls.sort(() => 0.5 - Math.random()).slice(0, 3);
+        shuffledImages.forEach(url => {
+            const img = document.createElement('img');
+            img.src = url;
+            img.alt = 'Food storage item';
+            img.style.width = '200px';
+            img.style.height = 'auto';
+            img.style.borderRadius = '8px';
+            randomImagesDiv.appendChild(img);
+        });
+    }
+
+    loadRandomImages();
+
     function saveItemsToLocalStorage(items) {
         localStorage.setItem('pantryItems', JSON.stringify(items));
     }
