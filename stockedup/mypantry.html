@@ -11,8 +11,8 @@
         <h1>Stocked Up</h1>
         <nav aria-label="Main navigation">
             <ul role="menu">
-                <li role="menuitem"><a href="index.html">Home</a></li>
-                <li role="menuitem"><a href="mypantry.html">My Pantry</a></li>
+                <li role="menuitem"><a href="index.html" class="active">Home</a></li>
+                <li role="menuitem"><a href="mypantry.html" class="active">My Pantry</a></li>
                 <li role="menuitem"><a href="expiration.html">Expiration</a></li>
             </ul>
         </nav>
@@ -28,13 +28,14 @@
                 <label for="expirationDate">Expiration Date:</label>
                 <input type="date" id="expirationDate" name="expirationDate" required>
                 <button type="submit">Add Item</button>
+                <div id="error" style="color: red; margin-top: 10px;"></div>
             </form>
             <form id="searchForm">
                 <label for="searchQuery">Search Pantry:</label>
                 <input type="text" id="searchQuery" name="searchQuery">
                 <button type="submit">Search</button>
             </form>
-            <div id="inventoryList"></div>
+            <div id="inventoryList" aria-live="polite"></div>
         </section>
     </main>
     <footer>

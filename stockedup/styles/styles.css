@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Boldonse&family=Shadows+Into+Light+Two&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 :root {
     /* My color palatte */
@@ -9,8 +9,8 @@
     --text-color: #333;
 
     /* Fonts */
-    --heading-font: "Shadows Into Light Two", cursive;
-    --paragraph-font: "Boldonse", system-ui;
+    --heading-font: "Roboto", sans-serif;
+    --paragraph-font: "Roboto", sans-serif;
 
     /* Colors for readability and consistency */
     --headline-color: var(--accent1-color);
@@ -64,13 +64,34 @@ nav {
     display: flex;
     justify-content: center;
     padding: 0.5em 0;
+    width: 100%;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav li {
+    margin: 0;
+    position: relative;
+}
+
+nav li:not(:last-child)::after {
+    content: "|";
+    position: absolute;
+    right: -0.5em;
+    color: var(--nav-text);
 }
 
 nav a {
     color: var(--nav-text);
     text-decoration: none;
     padding: 0.7em 1.2em;
-    margin: 0 0.5em;
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
@@ -80,7 +101,7 @@ nav a:hover {
     color: var(--nav-hover-text);
 }
 
-nav a.active { 
+nav a.active {
     background-color: var(--accent2-color);
     color: var(--secondary-color);
 }
@@ -136,9 +157,29 @@ footer {
     padding: 1em 0;
     background-color: var(--footer-background);
     color: var(--footer-text);
-    position: fixed; /* Consider 'sticky' or remove for different layouts */
-    bottom: 0;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+footer li {
+    margin: 0;
+}
+
+footer a {
+    color: var(--footer-text);
+    text-decoration: none;
+    padding: 0 10px;
 }
 
 /* Inventory list style */
