@@ -1,49 +1,61 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const randomImagesDiv = document.getElementById('randomImages');
-    const imagesUrls = [
-        'styles/home/1.jpg',
-        'styles/home/2.jpg',
-        'styles/home/3.jpg',
-        'styles/home/4.jpg',
-        'styles/home/5.jpg',
-        'styles/home/6.jpg',
-        'styles/home/7.jpg',
-        'styles/home/8.jpg',
-        'styles/home/9.jpg',
-        'styles/home/10.jpg'
+    const homeImages = [
+        'styles/homeImages/1.jpg', 'styles/homeImages/2.jpg', 'styles/homeImages/3.jpg',
+        'styles/homeImages/4.jpg', 'styles/homeImages/5.jpg', 'styles/homeImages/6.jpg'
+    ];
+    const pantryImages = [
+        'styles/pantryImages/1.jpg', 'styles/pantryImages/2.jpg', 'styles/pantryImages/3.jpg',
+        'styles/pantryImages/4.jpg', 'styles/pantryImages/5.jpg', 'styles/pantryImages/6.jpg',
+        'styles/pantryImages/7.jpg', 'styles/pantryImages/8.jpg', 'styles/pantryImages/9.jpg',
+        'styles/pantryImages/10.jpg', 'styles/pantryImages/11.jpg', 'styles/pantryImages/12.jpg',
+        'styles/pantryImages/13.jpg'
     ];
 
-    function loadRandomImages() {
-        randomImagesDiv.innerHTML = '';
-        const shuffledImages = imagesUrls.sort(() => 0.5 - Math.random()).slice(0, 3);
+    // Random Image display functions
+    function displayRandomImages(imageArray, targetDivId) {
+        const targetDiv = document.getElementById(targetDivId);
+        if (!targetDiv) {
+            console.log('Target div not found:', targetDivId);
+            return;
+        }
+
+        const shuffledImages = imageArray.sort(() => 0.5 - Math.random()).slice(0, 3);
         shuffledImages.forEach(url => {
             const img = document.createElement('img');
             img.src = url;
-            img.alt = 'Food storage item';
+            img.alt = 'Random food item';
             img.style.width = '200px';
             img.style.height = 'auto';
             img.style.borderRadius = '8px';
-            randomImagesDiv.appendChild(img);
+            targetDiv.appendChild(img);
         });
     }
 
-    loadRandomImages();
+    displayRandomImages(homeImages, 'randomHomeImages');
+    displayRandomImages(pantryImages, 'randomPantryImages');
+
+
+    // Pantry Page: Inventory Management
+    const addItemForm = document.getElementById('addItemForm');
+    const searchForm = document.getElementById('searchForm');
+    const inventoryList = document.getElementById('inventoryList');
+    const expiringItemsDiv = document.getElementById('expiringItems');
+    const errorDiv = document.getElementById('error');
+
+    let items = loadItemsFromLocalStorage();
+    displayItems(items);
 
     function saveItemsToLocalStorage(items) {
         localStorage.setItem('pantryItems', JSON.stringify(items));
     }
 
     function loadItemsFromLocalStorage() {
-        const items = localStorage.getItem('pantryItems');
-        return items ? JSON.parse(items) : [];
+        const storedItems = localStorage.getItem('pantryItems');
+        return storedItems ? JSON.parse(storedItems) : [];
     }
 
-    const addItemForm = document.getElementById('addItemForm');
-    const searchForm = document.getElementById('searchForm');
-    const inventoryList = document.getElementById('inventoryList');
-    const expiringItemsDiv = document.getElementById('expiringItems');
-
     function displayItems(items) {
+        if (!inventoryList) return;
         inventoryList.innerHTML = '';
         if (items.length === 0) {
             inventoryList.innerHTML = '<p>Your pantry is empty.</p>';
@@ -54,78 +66,79 @@ document.addEventListener('DOMContentLoaded', () => {
             const itemDiv = document.createElement('div');
             itemDiv.classList.add('inventory-item');
             itemDiv.innerHTML = `
+                <img src="${item.imageSrc || 'placeholder.jpg'}" alt="Image of ${item.name}" style="width: 100px; height: auto; border-radius: 5px;">
                 <p><strong>Item:</strong> ${item.name}</p>
                 <p><strong>Quantity:</strong> ${item.quantity}</p>
                 <p><strong>Expiration Date:</strong> ${item.expirationDate}</p>
-                `;
+                <button class="delete-button" onclick="deleteItem('${item.name}')">Delete</button>
+            `;
             inventoryList.appendChild(itemDiv);
         });
     }
 
-    function displayExpiringItems(items) {
-        expiringItemsDiv.innerHTML = '';
-        const today = new Date();
-        const expiring = items.filter(item => new Date(item.expirationDate) <= today);
-        
-        if (expiring.length === 0) {
-            expiringItemsDiv.innerHTML = '<p>No items expiring soon.</p>';
-            return;
-        }
-
-        expiring.forEach(item => {
-            const itemDiv = document.createElement('div');
-            itemDiv.classList.add('expiring-soon');
-            itemDiv.textContent = `${item.name} expires on ${item.expirationDate}`;
-            expiringItemsDiv.appendChild(itemDiv);
-        });
-    }
-
-    function addItem(event) {
+    addItemForm.addEventListener('submit', (event) => {
         event.preventDefault();
-        const errorDiv = document.getElementById('error');
+        errorDiv.textContent = "";
 
-        const itemName = document.getElementById('itemName').value.trim();
-        const quantity = document.getElementById('quantity').value.trim();
-        const expirationDate = document.getElementById('expirationDate').value.trim();
+        const itemName = document.getElementById('itemName').value;
+        const quantity = parseInt(document.getElementById('quantity').value);
+        const expirationDate = document.getElementById('expirationDate').value;
+        const imageInput = document.querySelector('input[name="itemImage"]');
+        const imageFile = imageInput.files[0];
 
-        if (!itemName || !quantity || !expirationDate) {
-            alert("Please fill in all fields.");
+        if (!itemName || quantity <= 0 || !expirationDate) {
+            errorDiv.textContent = "Please fill in all fields correctly.";
             return;
         }
 
-        const newItem = { name: itemName, quantity: quantity, expirationDate: expirationDate };
-        const items = loadItemsFromLocalStorage();
+        let imageSrc = null;
+        if (imageFile) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                imageSrc = e.target.result;
+                addItem(itemName, quantity, expirationDate, imageSrc);
+            };
+            reader.readAsDataURL(imageFile);
+        } else {
+            addItem(itemName, quantity, expirationDate, imageSrc);
+        }
+    });
+
+    function addItem(itemName, quantity, expirationDate, imageSrc) {
+        const newItem = {
+            name: itemName,
+            quantity: quantity,
+            expirationDate: expirationDate,
+            imageSrc: imageSrc,
+        };
         items.push(newItem);
         saveItemsToLocalStorage(items);
         displayItems(items);
-        displayExpiringItems(items);
         addItemForm.reset();
     }
 
-    function searchItems(event) {
+    searchForm.addEventListener('submit', (event) => {
         event.preventDefault();
         const searchQuery = document.getElementById('searchQuery').value.toLowerCase();
-        const items = loadItemsFromLocalStorage();
         const filteredItems = items.filter(item => item.name.toLowerCase().includes(searchQuery));
-        displayItems(filteredItem => item.name.toLowerCase().includes(searchQuery)
-    );
-    displayItems(filteredItems);
-    }
+        displayItems(filteredItems);
+    });
 
-    function deleteItem(itemName) {
-        const items = loadItemsFromLocalStorage();
-        const updatedItems = items.filtered(item => item.name !== itemName);
-        saveItemsToLocalStorage(updatedItems);
-        displayItems(updatedItems);
-        displayExpiringItems(updatedItems);
-    }
-    
-    // Attach event listeners
-    addItemForm.addEventListener('submit', addItem);
-    searchForm.addEventListener('submit', searchItems);
+    window.deleteItem = (itemName) => {
+        items = items.filter(item => item.name !== itemName);
+        saveItemsToLocalStorage(items);
+        displayItems(items);
+    };
 
-    // Load and display items on page load
-    const items = loadItemsFromLocalStorage();
-    displayItems(items);
-    displayExpiringItems(items);
+    function displayExpiringItems() {
+        if (!expiringItemsDiv) return;
+        const today = new Date();
+        const expiring = items.filter(item => new Date(item.expirationDate) <= today);
+
+        expiring.sort((a, b) => new Date(a.expirationDate) - new Date(b.expirationDate));
+
+        expiringItemsDiv.innerHTML = expiring.length === 0 ? '<p>No items expiring soon.</p>' :
+            expiring.map(item => `<p>${item.name} expires on ${item.expirationDate}</p>`).join('');     
+    }
+    displayExpiringItems();
 });
