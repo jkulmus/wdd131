@@ -1,39 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const homeImages = [
-        'styles/homeImages/1.jpg', 'styles/homeImages/2.jpg', 'styles/homeImages/3.jpg',
-        'styles/homeImages/4.jpg', 'styles/homeImages/5.jpg', 'styles/homeImages/6.jpg'
-    ];
-    const pantryImages = [
-        'styles/pantryImages/1.jpg', 'styles/pantryImages/2.jpg', 'styles/pantryImages/3.jpg',
-        'styles/pantryImages/4.jpg', 'styles/pantryImages/5.jpg', 'styles/pantryImages/6.jpg',
-        'styles/pantryImages/7.jpg', 'styles/pantryImages/8.jpg', 'styles/pantryImages/9.jpg',
-        'styles/pantryImages/10.jpg', 'styles/pantryImages/11.jpg', 'styles/pantryImages/12.jpg',
-        'styles/pantryImages/13.jpg'
-    ];
-
-    // Random Image display functions
-    function displayRandomImages(imageArray, targetDivId) {
-        const targetDiv = document.getElementById(targetDivId);
-        if (!targetDiv) {
-            console.log('Target div not found:', targetDivId);
-            return;
-        }
-
-        const shuffledImages = imageArray.sort(() => 0.5 - Math.random()).slice(0, 3);
-        shuffledImages.forEach(url => {
-            const img = document.createElement('img');
-            img.src = url;
-            img.alt = 'Random food item';
-            img.style.width = '200px';
-            img.style.height = 'auto';
-            img.style.borderRadius = '8px';
-            targetDiv.appendChild(img);
-        });
-    }
-
-    displayRandomImages(homeImages, 'randomHomeImages');
-    displayRandomImages(pantryImages, 'randomPantryImages');
-
+    // Newsletter subscription form handling
+    const newsletterForm = document.getElementById('newsletterForm');
+    newsletterForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const email = document.getElementById('newsletterEmail').value;
+        alert(`Thank you for subscribing with ${email}!`);
+        newsletterForm.reset();
+    });
 
     // Pantry Page: Inventory Management
     const addItemForm = document.getElementById('addItemForm');
@@ -66,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const itemDiv = document.createElement('div');
             itemDiv.classList.add('inventory-item');
             itemDiv.innerHTML = `
-                <img src="${item.imageSrc || 'placeholder.jpg'}" alt="Image of ${item.name}" style="width: 100px; height: auto; border-radius: 5px;">
                 <p><strong>Item:</strong> ${item.name}</p>
                 <p><strong>Quantity:</strong> ${item.quantity}</p>
                 <p><strong>Expiration Date:</strong> ${item.expirationDate}</p>
@@ -83,33 +55,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const itemName = document.getElementById('itemName').value;
         const quantity = parseInt(document.getElementById('quantity').value);
         const expirationDate = document.getElementById('expirationDate').value;
-        const imageInput = document.querySelector('input[name="itemImage"]');
-        const imageFile = imageInput.files[0];
 
         if (!itemName || quantity <= 0 || !expirationDate) {
             errorDiv.textContent = "Please fill in all fields correctly.";
             return;
         }
 
-        let imageSrc = null;
-        if (imageFile) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                imageSrc = e.target.result;
-                addItem(itemName, quantity, expirationDate, imageSrc);
-            };
-            reader.readAsDataURL(imageFile);
-        } else {
-            addItem(itemName, quantity, expirationDate, imageSrc);
-        }
+        addItem(itemName, quantity, expirationDate);
     });
 
-    function addItem(itemName, quantity, expirationDate, imageSrc) {
+    function addItem(itemName, quantity, expirationDate) {
         const newItem = {
             name: itemName,
             quantity: quantity,
             expirationDate: expirationDate,
-            imageSrc: imageSrc,
         };
         items.push(newItem);
         saveItemsToLocalStorage(items);

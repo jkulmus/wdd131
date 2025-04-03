@@ -19,6 +19,7 @@
     </header>
     <main>
         <section>
+            <img src="styles/pantryImages/pantry.jpg" alt="Featured pantry" class="featured-image">
             <h2>My Pantry</h2>
             <form id="addItemForm">
                 <label for="itemName">Item Name:</label>
@@ -27,8 +28,6 @@
                 <input type="number" id="quantity" name="quantity" required>
                 <label for="expirationDate">Expiration Date:</label>
                 <input type="date" id="expirationDate" name="expirationDate" required>
-                <label for="itemImage">Upload Image:</label>
-                <input type="file" name="itemImage" name="itemImage" accept="image/*">
                 <button type="submit">Add Item</button>
                 <div id="error" style="color: red; margin-top: 10px;"></div>
             </form>
@@ -37,17 +36,30 @@
                 <input type="text" id="searchQuery" name="searchQuery">
                 <button type="submit">Search</button>
             </form>
-            <div id="randomPantryImages" style="display: flex; gap: 10px; justify-content: center;"></div>
-            <div id="inventoryList" aria-live="polite"></div>
         </section>
     </main>
     <footer>
+        <div class="footer-container">
+            <h3>Follow Us</h3>
+            <ul class="social-links">
+                <li><a href="https:www.facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+                <li><a href="https:www.twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+                <li><a href="https:www.instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+            </ul>
+        </div>
+        <div class="footer-widget">
+            <h3>Newsletter</h3>
+            <form id="newsletterForm">
+                <input type="email" id="newsletterEmail" name="newsletterEmail" placeholder="Your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+        <div class="footer-widget">
+            <h3>Contact Us</h3>
+            <p>Email: info@stockedup.com</p>
+            <p>Phone: (123) 456-7890</p>
+        </div>
         <p>&copy; 2025 Stocked Up</p>
-        <ul>
-            <li><a href="https://www.facebook.com" target="_blank">Facebook</a></li>
-            <li><a href="https://www.twitter.com" target="_blank">Twitter</a></li>
-            <li><a href="https://www.instagram.com" target="_blank">Instagram</a></li>
-        </ul>
     </footer>
     <script src="main.js"></script>
 </body>
