@@ -26,9 +26,10 @@
         <section>
             <picture>
                 <source srcset="styles/pantryImages/pantry.webp" type="image/webp">
-                <img src="styles/pantryImages/pantry.webp" alt="Featured pantry" class="featured-image" width="1200" height="675">
+                <img src="styles/pantryImages/pantry.jpg" alt="Organized pantry shelves showcasing food items" class="featured-image" width="1200" height="675" loading="lazy">
             </picture>
             <h2>My Pantry</h2>
+            <div id="error" aria-live="assertive"></div>
             <form id="addItemForm" class="add-item-form">
                 <div class="form-group">
                     <label for="itemName">Item Name:</label>
@@ -39,11 +40,10 @@
                     <input type="number" id="quantity" name="quantity" min="1" value="1" required>
                 </div>
                 <div class="form-group">
-                    <label for="expirationDate">Expiration Date (Optional):</label>
+                    <label for="expirationDate">Expiration Date:</label>
                     <input type="date" id="expirationDate" name="expirationDate">
                 </div>
                 <button type="submit" class="button">Add Item</button>
-                <div id="error" class="error-message"></div>
             </form>
 
             <form id="searchForm">
@@ -53,32 +53,21 @@
             </form>
 
             <div id="inventoryList">
-                </div>
+                <p>Loading your pantry items...</p>
+            </div>
         </section>
     </main>
     <footer>
         <div class="footer-container">
             <h3>Follow Us</h3>
             <ul class="social-links">
-                <li><a href="https:www.facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></li>
-                <li><a href="https:www.twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a></li>
-                <li><a href="https:www.instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                <li><a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+                <li><a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+                <li><a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a></li>
             </ul>
-        </div>
-        <div class="footer-widget">
-            <h3>Newsletter</h3>
-            <form id="newsletterForm">
-                <input type="email" id="newsletterEmail" name="newsletterEmail" placeholder="Your email" required>
-                <button type="submit">Subscribe</button>
-            </form>
-        </div>
-        <div class="footer-widget">
-            <h3>Contact Us</h3>
-            <p>Email: info@stockedup.com</p>
-            <p>Phone: (123) 456-7890</p>
         </div>
         <p>&copy; 2025 Stocked Up</p>
     </footer>
-    <script src="main.js"></script>
+    <script src="main.js" defer></script>
 </body>
 </html>

@@ -14,15 +14,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const addItemForm = document.getElementById('addItemForm');
     const searchForm = document.getElementById('searchForm');
     const inventoryList = document.getElementById('inventoryList');
+    const errorDiv = document.getElementById('error');
 
     // --- Expiration Page ---
     const expiringItemsDiv = document.getElementById('expiringItems');
 
-    const errorDiv = document.getElementById('error');
-
     let items = loadItemsFromLocalStorage();
-    displayItems(items); // Call this on pantry page load
-    displayExpiringItems(); // Call this on *both* pantry and expiration page load
+    displayItems(items); // For Pantry Page
+    displayExpiringItems(); // For Expiration Page
 
     // Function to save items to local storage
     function saveItemsToLocalStorage(items) {
@@ -35,10 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
         return storedItems ? JSON.parse(storedItems) : [];
     }
 
-    // Function to display the pantry items in the UI (only used on mypantry.html)
+    // Function to display pantry items on the Pantry Page
     function displayItems(items) {
         if (!inventoryList) return;
         inventoryList.innerHTML = '';
+
         if (items.length === 0) {
             inventoryList.innerHTML = '<p>Your pantry is empty.</p>';
             return;
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Event listener for adding a new item (only on mypantry.html)
+    // Event listener for adding a new item (Pantry Page)
     if (addItemForm) {
         addItemForm.addEventListener('submit', (event) => {
             event.preventDefault();
@@ -65,9 +65,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 errorDiv.textContent = "";
             }
 
-            const itemName = document.getElementById('itemName').value.trim(); // Trim whitespace
+            const itemName = document.getElementById('itemName').value.trim();
             const quantity = parseInt(document.getElementById('quantity').value);
-            const expirationDate = document.getElementById('expirationDate').value; // This will be an empty string if not filled
+            const expirationDate = document.getElementById('expirationDate').value;
 
             if (!itemName || quantity <= 0) {
                 if (errorDiv) {
@@ -80,23 +80,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Function to add a new item to the pantry (only used from mypantry.html)
+    // Function to add a new item to the pantry
     function addItem(itemName, quantity, expirationDate) {
         const newItem = {
             name: itemName,
             quantity: quantity,
-            expirationDate: expirationDate || null, // Store null if no date is provided
+            expirationDate: expirationDate || null,
         };
+
         items.push(newItem);
         saveItemsToLocalStorage(items);
         displayItems(items);
-        displayExpiringItems(); // Update expiring items after adding
+        displayExpiringItems(); // Refresh expiring items
         if (addItemForm) {
             addItemForm.reset();
         }
     }
 
-    // Event listener for searching pantry items (only on mypantry.html)
+    // Event listener for searching pantry items (Pantry Page)
     if (searchForm) {
         searchForm.addEventListener('submit', (event) => {
             event.preventDefault();
@@ -106,23 +107,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Function to delete an item (attached to the window for onclick in HTML - only used from mypantry.html)
+    // Function to delete an item
     window.deleteItem = (itemName) => {
-        items = items.filter(item => item.name !== itemName);
-        saveItemsToLocalStorage(items);
-        displayItems(items);
-        displayExpiringItems(); // Update expiring items after deleting
+        if (confirm(`Are you sure you want to delete ${itemName}?`)) {
+            items = items.filter(item => item.name !== itemName);
+            saveItemsToLocalStorage(items);
+            displayItems(items);
+            displayExpiringItems(); // Refresh expiring items
+        }
     };
 
-    // Function to display expiring items on the expiration page
+    // Function to display expiring items on the Expiration Page
     function displayExpiringItems() {
         if (!expiringItemsDiv) return;
+
         const today = new Date();
-        const expiring = items.filter(item => item.expirationDate && new Date(item.expirationDate) <= today); // Check if expirationDate exists
+        const expiringItems = items.filter(item =>
+            item.expirationDate && new Date(item.expirationDate) <= today
+        );
 
-        expiring.sort((a, b) => new Date(a.expirationDate) - new Date(b.expirationDate));
+        expiringItems.sort((a, b) => new Date(a.expirationDate) - new Date(b.expirationDate));
 
-        expiringItemsDiv.innerHTML = expiring.length === 0 ? '<p>No items expiring soon.</p>' :
-            expiring.map(item => `<p>${item.name} expires on ${item.expirationDate}</p>`).join('');
+        expiringItemsDiv.innerHTML = expiringItems.length === 0
+            ? '<p>No items expiring soon.</p>'
+            : expiringItems.map(item =>
+                `<p><strong>${item.name}</strong> expires on <strong>${item.expirationDate}</strong></p>`
+            ).join('');
     }
 });

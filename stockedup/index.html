@@ -16,7 +16,7 @@
         <h1>Stocked Up</h1>
         <nav aria-label="Main navigation">
             <ul role="menu">
-                <li role="menuitem"><a href="index.html" id="homeLink">Home</a></li>
+                <li role="menuitem"><a href="index.html" id="homeLink" class="active">Home</a></li>
                 <li role="menuitem"><a href="mypantry.html" id="pantryLink">My Pantry</a></li>
                 <li role="menuitem"><a href="expiration.html" id="expirationLink">Expiration</a></li>
             </ul>
@@ -26,36 +26,27 @@
         <section>
             <picture>
                 <source srcset="styles/homeImages/homepage.webp" type="image/webp">
-                <img srcset="styles/homeImages/homepage-small.jpg 500w,
-                             styles/homeImages/homepage-medium.jpg 1000w,
-                             styles/homeImages/homepage-large.jpg 1500w"
-                     sizes="(max-width: 600px) 500px,
-                            (max-width: 1200px) 1000px,
-                            1500px"
-                     src="styles/homeImages/homepage-medium.jpg"
-                     alt="Featured food storage"
-                     class="featured-image"
-                     width="1200" height="400">
+                <img src="styles/homeImages/homepage-small.jpg" alt="Organized food storage featuring canned goods" class="featured-image" width="1200" height="400" loading="lazy">
             </picture>
             <h2>Welcome to Stocked Up!</h2>
-            <p>Take control of your food storage and reduce waste with Stocked Up!
-                Easily track your pantry inventory, monitor expiration dates, and plan your meals with confidence.</p>
+            <p>Take control of your food storage and reduce waste with Stocked Up! Easily track your pantry inventory, monitor expiration dates, and plan your meals with confidence.</p>
             <p>Get started by adding items to your pantry!</p>
-            <a href="mypantry.html" class="button" aria-label="Go to my Pantry">Go to My Pantry</a>
+            <a href="mypantry.html" class="button" aria-label="Go to My Pantry Page">Go to My Pantry</a>
         </section>
     </main>
     <footer>
         <div class="footer-container">
             <h3>Follow Us</h3>
             <ul class="social-links">
-                <li><a href="https:www.facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></li>
-                <li><a href="https:www.twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a></li>
-                <li><a href="https:www.instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                <li><a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+                <li><a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+                <li><a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a></li>
             </ul>
         </div>
         <div class="footer-widget">
             <h3>Newsletter</h3>
             <form id="newsletterForm">
+                <label for="newsletterEmail">Email:</label>
                 <input type="email" id="newsletterEmail" name="newsletterEmail" placeholder="Your email" required>
                 <button type="submit">Subscribe</button>
             </form>
@@ -67,6 +58,6 @@
         </div>
         <p>&copy; 2025 Stocked Up</p>
     </footer>
-    <script src="main.js"></script>
+    <script src="main.js" defer></script>
 </body>
 </html>
