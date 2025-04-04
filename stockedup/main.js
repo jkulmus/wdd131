@@ -14,12 +14,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const addItemForm = document.getElementById('addItemForm');
     const searchForm = document.getElementById('searchForm');
     const inventoryList = document.getElementById('inventoryList');
+
+    // --- Expiration Page ---
     const expiringItemsDiv = document.getElementById('expiringItems');
+
     const errorDiv = document.getElementById('error');
 
     let items = loadItemsFromLocalStorage();
-    displayItems(items);
-    displayExpiringItems(); // Call this on page load to show initial expiring items
+    displayItems(items); // Call this on pantry page load
+    displayExpiringItems(); // Call this on *both* pantry and expiration page load
 
     // Function to save items to local storage
     function saveItemsToLocalStorage(items) {
@@ -32,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return storedItems ? JSON.parse(storedItems) : [];
     }
 
-    // Function to display the pantry items in the UI
+    // Function to display the pantry items in the UI (only used on mypantry.html)
     function displayItems(items) {
         if (!inventoryList) return;
         inventoryList.innerHTML = '';
@@ -54,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Event listener for adding a new item
+    // Event listener for adding a new item (only on mypantry.html)
     if (addItemForm) {
         addItemForm.addEventListener('submit', (event) => {
             event.preventDefault();
@@ -77,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Function to add a new item to the pantry
+    // Function to add a new item to the pantry (only used from mypantry.html)
     function addItem(itemName, quantity, expirationDate) {
         const newItem = {
             name: itemName,
@@ -93,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Event listener for searching pantry items
+    // Event listener for searching pantry items (only on mypantry.html)
     if (searchForm) {
         searchForm.addEventListener('submit', (event) => {
             event.preventDefault();
@@ -103,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Function to delete an item (attached to the window for onclick in HTML)
+    // Function to delete an item (attached to the window for onclick in HTML - only used from mypantry.html)
     window.deleteItem = (itemName) => {
         items = items.filter(item => item.name !== itemName);
         saveItemsToLocalStorage(items);
