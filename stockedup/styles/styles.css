@@ -246,6 +246,76 @@ footer {
     background-color: var(--button-primary-hover-bg);
 }
 
+/* Add Item Form Styling */
+.add-item-form {
+    background-color: var(--section-background);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--section-box-shadow);
+    margin-bottom: 2em;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: var(--headline-color);
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="date"] {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.form-group input:focus {
+    outline: 2px solid var(--accent1-color);
+    border-color: var(--accent1-color);
+}
+
+.add-item-form button[type="submit"] {
+    margin-top: 15px;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+/* Style for the search form to align */
+#searchForm {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+#searchForm label {
+    font-weight: bold;
+    color: var(--headline-color);
+}
+
+#searchForm input[type="text"] {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1rem;
+    flex-grow: 1; /* Allows the input to take up more space */
+}
+
+#searchForm button[type="submit"] {
+    padding: 10px 15px;
+}
+
 /* Inventory list style */
 #inventoryList {
     margin-top: 1em;
@@ -253,18 +323,21 @@ footer {
 
 .inventory-item {
     display: flex;
-    align-items: center;
+    flex-wrap: wrap; /* Make items wrap on smaller screens */
     gap: 10px;
     padding: 10px;
     border: 1px solid var(--border-color);
     border-radius: 5px;
     margin-bottom: 10px;
+    align-items: center; /* Vertically align items */
 }
 
-.inventory-item img {
-    width: 100px;
-    height: auto;
-    border-radius: 5px;
+.inventory-item > p {
+    margin: 0; /* Remove default paragraph margins inside item */
+}
+
+.inventory-item strong {
+    font-weight: bold;
 }
 
 .delete-button {
@@ -274,7 +347,7 @@ footer {
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
-    transition: var(--background-color) 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
 .delete-button:hover {
@@ -297,6 +370,10 @@ footer {
     nav {
         justify-content: flex-start;
         padding-left: 20px;
+    }
+
+    .inventory-item {
+        flex-wrap: nowrap; /* Don't wrap on larger screens by default */
     }
 }
 
