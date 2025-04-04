@@ -4,7 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stocked Up - My Pantry</title>
-    <link rel="stylesheet" href="styles/styles.css">
+    <meta name="description" content="Manage your food pantry with Stocked Up! Add, search, and track the quantity and expiration dates of your stored items.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="styles/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles/styles.css"></noscript>
 </head>
 <body>
     <header>
@@ -19,7 +24,10 @@
     </header>
     <main>
         <section>
-            <img src="styles/pantryImages/pantry1.jpg" alt="Featured pantry" class="featured-image">
+            <picture>
+                <source srcset="styles/pantryImages/pantry1.webp" type="image/webp">
+                <img src="styles/pantryImages/pantry1.jpg" alt="Featured pantry" class="featured-image" width="1200" height="675">
+            </picture>
             <h2>My Pantry</h2>
             <form id="addItemForm" class="add-item-form">
                 <div class="form-group">

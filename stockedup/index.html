@@ -4,7 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stocked Up - Your Food Storage Tracker</title>
-    <link rel="stylesheet" href="styles/styles.css">
+    <meta name="description" content="Take control of your food storage with Stocked Up! Track your pantry inventory and expiration dates to reduce waste.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="styles/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles/styles.css"></noscript>
 </head>
 <body>
     <header>
@@ -19,7 +24,19 @@
     </header>
     <main>
         <section>
-            <img src="styles/homeImages/homepage.jpg" alt="Featured foot storage" class="featured-image">
+            <picture>
+                <source srcset="styles/homeImages/homepage.webp" type="image/webp">
+                <img srcset="styles/homeImages/homepage-small.jpg 500w,
+                             styles/homeImages/homepage-medium.jpg 1000w,
+                             styles/homeImages/homepage-large.jpg 1500w"
+                     sizes="(max-width: 600px) 500px,
+                            (max-width: 1200px) 1000px,
+                            1500px"
+                     src="styles/homeImages/homepage-medium.jpg"
+                     alt="Featured food storage"
+                     class="featured-image"
+                     width="1200" height="400">
+            </picture>
             <h2>Welcome to Stocked Up!</h2>
             <p>Take control of your food storage and reduce waste with Stocked Up!
                 Easily track your pantry inventory, monitor expiration dates, and plan your meals with confidence.</p>
