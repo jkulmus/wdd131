@@ -15,10 +15,10 @@
     <header>
         <h1>Stocked Up</h1>
         <nav aria-label="Main navigation">
-            <ul role="menu">
-                <li role="menuitem"><a href="index.html">Home</a></li>
-                <li role="menuitem"><a href="mypantry.html">My Pantry</a></li>
-                <li role="menuitem"><a href="expiration.html" class="active">Expiration</a></li>
+            <ul role="menu" class="nav__list">
+                <li role="menuitem" class="nav__item"><a href="index.html" class="nav__link">Home</a></li>
+                <li role="menuitem" class="nav__item"><a href="mypantry.html" class="nav__link">My Pantry</a></li>
+                <li role="menuitem" class="nav__item"><a href="expiration.html" class="nav__link nav__link--active">Expiration</a></li>
             </ul>
         </nav>
     </header>
@@ -26,7 +26,7 @@
         <section>
             <picture>
                 <source srcset="styles/expirationImages/expiring.webp" type="image/webp">
-                <img src="styles/expirationImages/expiring.jpg"
+                <img src="styles/expirationImages/expiring.webp"
                      alt="Pantry items that are approaching expiration dates"
                      class="featured-image"
                      width="1200" height="675" loading="lazy">
@@ -39,17 +39,14 @@
     </main>
     <footer>
         <div class="footer-container">
-            <h3>Follow Us</h3>
-            <ul class="social-links">
-                <li><a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></li>
-                <li><a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a></li>
-                <li><a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-            </ul>
-        </div>
-        <div class="footer-widget">
-            <h3>Contact Us</h3>
-            <p>Email: info@stockedup.com</p>
-            <p>Phone: (123) 456-7890</p>
+            <div class="footer-widget">
+                <h3>Follow Us</h3>
+                <ul class="social-links">
+                    <li><a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+                    <li><a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+                    <li><a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                </ul>
+            </div>
         </div>
         <p>&copy; 2025 Stocked Up</p>
     </footer>
