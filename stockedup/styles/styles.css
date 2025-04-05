@@ -59,7 +59,7 @@ header h1 {
 }
 
 /* Navigation */
-.nav {
+nav {
     background-color: var(--nav-background);
     display: flex;
     justify-content: center;
@@ -67,7 +67,7 @@ header h1 {
     width: 100%;
 }
 
-.nav__list {
+nav ul {
     list-style: none;
     padding: 0;
     margin: 0 auto;
@@ -76,19 +76,19 @@ header h1 {
     justify-content: center;
 }
 
-.nav__item {
+nav li {
     margin: 0;
     position: relative;
 }
 
-.nav__item:not(:last-child)::after {
+nav li:not(:last-child)::after {
     content: "|";
     position: absolute;
     right: -0.5em;
     color: var(--nav-text);
 }
 
-.nav__link {
+nav a {
     color: var(--nav-text);
     text-decoration: none;
     padding: 0.7em 1.2em;
@@ -96,17 +96,17 @@ header h1 {
     transition: background-color 0.3s ease;
 }
 
-.nav__link:hover {
+nav a:hover {
     background-color: var(--nav-hover-bg);
     color: var(--nav-hover-text);
 }
 
-.nav__link--active {
+nav a.active {
     background-color: var(--accent2-color);
     color: var(--secondary-color);
 }
 
-.nav__link:focus {
+nav a:focus {
     outline: 2px solid var(--nav-hover-bg);
     outline-offset: 2px;
 }
@@ -292,27 +292,27 @@ footer {
 }
 
 /* Style for the search form to align */
-.search-form {
+#searchForm {
     display: flex;
     gap: 10px;
     align-items: center;
     margin-bottom: 1em;
 }
 
-.search-form label {
+#searchForm label {
     font-weight: bold;
     color: var(--headline-color);
 }
 
-.search-form input[type="text"] {
+#searchForm input[type="text"] {
     padding: 10px;
     border: 1px solid var(--border-color);
     border-radius: 5px;
     font-size: 1rem;
-    flex-grow: 1;
+    flex-grow: 1; /* Allows the input to take up more space */
 }
 
-.search-form button[type="submit"] {
+#searchForm button[type="submit"] {
     padding: 10px 15px;
 }
 
@@ -323,17 +323,17 @@ footer {
 
 .inventory-item {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Make items wrap on smaller screens */
     gap: 10px;
     padding: 10px;
     border: 1px solid var(--border-color);
     border-radius: 5px;
     margin-bottom: 10px;
-    align-items: center;
+    align-items: center; /* Vertically align items */
 }
 
 .inventory-item > p {
-    margin: 0;
+    margin: 0; /* Remove default paragraph margins inside item */
 }
 
 .inventory-item strong {
@@ -367,13 +367,13 @@ footer {
         padding: 30px;
     }
 
-    .nav {
+    nav {
         justify-content: flex-start;
         padding-left: 20px;
     }
 
     .inventory-item {
-        flex-wrap: nowrap;
+        flex-wrap: nowrap; /* Don't wrap on larger screens by default */
     }
 }
 

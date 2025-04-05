@@ -15,10 +15,10 @@
     <header>
         <h1>Stocked Up</h1>
         <nav aria-label="Main navigation">
-            <ul role="menu" class="nav__list">
-                <li role="menuitem" class="nav__item"><a href="index.html" id="homeLink" class="nav__link nav__link--active">Home</a></li>
-                <li role="menuitem" class="nav__item"><a href="mypantry.html" id="pantryLink" class="nav__link">My Pantry</a></li>
-                <li role="menuitem" class="nav__item"><a href="expiration.html" id="expirationLink" class="nav__link">Expiration</a></li>
+            <ul role="menu">
+                <li role="menuitem"><a href="index.html" id="homeLink" class="active">Home</a></li>
+                <li role="menuitem"><a href="mypantry.html" id="pantryLink">My Pantry</a></li>
+                <li role="menuitem"><a href="expiration.html" id="expirationLink">Expiration</a></li>
             </ul>
         </nav>
     </header>
@@ -26,37 +26,35 @@
         <section>
             <picture>
                 <source srcset="styles/homeImages/homepage.webp" type="image/webp">
-                <img src="styles/homeImages/homepage.webp" alt="Organized food storage featuring canned goods" class="featured-image" width="1200" height="400" loading="lazy">
+                <img src="styles/homeImages/homepage-small.jpg" alt="Organized food storage featuring canned goods" class="featured-image" width="1200" height="400" loading="lazy">
             </picture>
             <h2>Welcome to Stocked Up!</h2>
             <p>Take control of your food storage and reduce waste with Stocked Up! Easily track your pantry inventory, monitor expiration dates, and plan your meals with confidence.</p>
             <p>Get started by adding items to your pantry!</p>
-            <a href="mypantry.html" class="button">Go to My Pantry</a>
+            <a href="mypantry.html" class="button" aria-label="Go to My Pantry Page">Go to My Pantry</a>
         </section>
     </main>
     <footer>
         <div class="footer-container">
-            <div class="footer-widget">
-                <h3>Follow Us</h3>
-                <ul class="social-links">
-                    <li><a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></li>
-                    <li><a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a></li>
-                    <li><a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-                </ul>
-            </div>
-            <div class="footer-widget">
-                <h3>Newsletter</h3>
-                <form id="newsletterForm">
-                    <label for="newsletterEmail">Email:</label>
-                    <input type="email" id="newsletterEmail" name="newsletterEmail" placeholder="Your email" required>
-                    <button type="submit" class="button">Subscribe</button>
-                </form>
-            </div>
-            <div class="footer-widget">
-                <h3>Contact Us</h3>
-                <p>Email: info@stockedup.com</p>
-                <p>Phone: (123) 456-7890</p>
-            </div>
+            <h3>Follow Us</h3>
+            <ul class="social-links">
+                <li><a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+                <li><a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+                <li><a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+            </ul>
+        </div>
+        <div class="footer-widget">
+            <h3>Newsletter</h3>
+            <form id="newsletterForm">
+                <label for="newsletterEmail">Email:</label>
+                <input type="email" id="newsletterEmail" name="newsletterEmail" placeholder="Your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+        <div class="footer-widget">
+            <h3>Contact Us</h3>
+            <p>Email: info@stockedup.com</p>
+            <p>Phone: (123) 456-7890</p>
         </div>
         <p>&copy; 2025 Stocked Up</p>
     </footer>
