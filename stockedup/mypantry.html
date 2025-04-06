@@ -29,7 +29,7 @@
                 <img src="styles/pantryImages/pantry.jpg" alt="Organized pantry shelves showcasing food items" class="featured-image" width="1200" height="675" loading="lazy">
             </picture>
             <h2>My Pantry</h2>
-            <div id="error" aria-live="assertive"></div>
+            <div id="error" class="error-message" aria-live="assertive"></div>
             <form id="addItemForm" class="add-item-form">
                 <div class="form-group">
                     <label for="itemName">Item Name:</label>
@@ -52,7 +52,7 @@
                 <button type="submit">Search</button>
             </form>
 
-            <div id="inventoryList">
+            <div id="inventoryList" aria-live="polite">
                 <p>Loading your pantry items...</p>
             </div>
         </section>

@@ -51,9 +51,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p><strong>Item:</strong> ${item.name}</p>
                 <p><strong>Quantity:</strong> ${item.quantity}</p>
                 <p><strong>Expiration Date:</strong> ${item.expirationDate || 'Not specified'}</p>
-                <button class="delete-button" onclick="deleteItem('${item.name}')">Delete</button>
+                <button class="delete-button" data-item-name="${item.name}">Delete</button>
             `;
             inventoryList.appendChild(itemDiv);
+        });
+
+        // Add event listeners to the delete buttons after they are added to the DOM
+        const deleteButtons = inventoryList.querySelectorAll('.delete-button');
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const itemName = this.dataset.itemName;
+                deleteItem(itemName);
+            });
         });
     }
 
@@ -108,28 +117,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Function to delete an item
-    window.deleteItem = (itemName) => {
+    function deleteItem(itemName) {
         if (confirm(`Are you sure you want to delete ${itemName}?`)) {
             items = items.filter(item => item.name !== itemName);
             saveItemsToLocalStorage(items);
             displayItems(items);
             displayExpiringItems(); // Refresh expiring items
         }
-    };
+    }
 
     // Function to display expiring items on the Expiration Page
     function displayExpiringItems() {
         if (!expiringItemsDiv) return;
 
         const today = new Date();
-        const expiringItems = items.filter(item =>
-            item.expirationDate && new Date(item.expirationDate) <= today
-        );
+        today.setHours(0, 0, 0, 0); // Set time to the beginning of the day for comparison
+
+        const expiringItems = items.filter(item => {
+            if (item.expirationDate) {
+                const expirationDate = new Date(item.expirationDate);
+                expirationDate.setHours(0, 0, 0, 0);
+                return expirationDate <= today;
+            }
+            return false;
+        });
 
         expiringItems.sort((a, b) => new Date(a.expirationDate) - new Date(b.expirationDate));
 
         expiringItemsDiv.innerHTML = expiringItems.length === 0
-            ? '<p>No items expiring soon.</p>'
+            ? '<p>No items expiring today or in the past.</p>'
             : expiringItems.map(item =>
                 `<p><strong>${item.name}</strong> expires on <strong>${item.expirationDate}</strong></p>`
             ).join('');
