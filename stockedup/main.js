@@ -1,4 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('nav a');
+    const currentPage = window.location.pathname.split('/').pop(); // Get the current page file name
+
+    navLinks.forEach(link => {
+        const linkPage = link.getAttribute('href');
+        if (linkPage === currentPage) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+
     // --- Newsletter Subscription Form Handling ---
     const newsletterForm = document.getElementById('newsletterForm');
     if (newsletterForm) {
@@ -15,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchForm = document.getElementById('searchForm');
     const inventoryList = document.getElementById('inventoryList');
     const errorDiv = document.getElementById('error');
+    const expirationDateInput = document.getElementById('expirationDate'); // Get the expiration date input
 
     // --- Expiration Page ---
     const expiringItemsDiv = document.getElementById('expiringItems');
@@ -22,6 +35,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let items = loadItemsFromLocalStorage();
     displayItems(items); // For Pantry Page
     displayExpiringItems(); // For Expiration Page
+
+    // Function to format date
+    function formatDate(dateString) {
+        if (!dateString) return 'Not specified';
+        const date = new Date(dateString);
+        return date.toLocaleDateString(); // You can customize the format here
+    }
 
     // Function to save items to local storage
     function saveItemsToLocalStorage(items) {
@@ -50,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
             itemDiv.innerHTML = `
                 <p><strong>Item:</strong> ${item.name}</p>
                 <p><strong>Quantity:</strong> ${item.quantity}</p>
-                <p><strong>Expiration Date:</strong> ${item.expirationDate || 'Not specified'}</p>
+                <p><strong>Expiration Date:</strong> ${formatDate(item.expirationDate)}</p>
                 <button class="delete-button" data-item-name="${item.name}">Delete</button>
             `;
             inventoryList.appendChild(itemDiv);
@@ -76,6 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const itemName = document.getElementById('itemName').value.trim();
             const quantity = parseInt(document.getElementById('quantity').value);
+            // Expiration date is now optional, so we just get its value
             const expirationDate = document.getElementById('expirationDate').value;
 
             if (!itemName || quantity <= 0) {
@@ -94,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const newItem = {
             name: itemName,
             quantity: quantity,
-            expirationDate: expirationDate || null,
+            expirationDate: expirationDate || null, // It will be null if no date is provided
         };
 
         items.push(newItem);
@@ -134,6 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
         today.setHours(0, 0, 0, 0); // Set time to the beginning of the day for comparison
 
         const expiringItems = items.filter(item => {
+            // Only consider items with an expiration date
             if (item.expirationDate) {
                 const expirationDate = new Date(item.expirationDate);
                 expirationDate.setHours(0, 0, 0, 0);
@@ -147,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
         expiringItemsDiv.innerHTML = expiringItems.length === 0
             ? '<p>No items expiring today or in the past.</p>'
             : expiringItems.map(item =>
-                `<p><strong>${item.name}</strong> expires on <strong>${item.expirationDate}</strong></p>`
+                `<p><strong>${item.name}</strong> expires on <strong>${formatDate(item.expirationDate)}</strong></p>`
             ).join('');
     }
 });
