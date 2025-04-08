@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function formatDate(dateString) {
         if (!dateString) return 'Not specified';
         const date = new Date(dateString);
-        return date.toLocaleDateString(); // You can customize the format here
+        return date.toLocaleDateString();
     }
 
     // Function to save items to local storage
